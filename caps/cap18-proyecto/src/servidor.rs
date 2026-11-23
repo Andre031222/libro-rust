@@ -77,7 +77,12 @@ impl Servidor {
             if self.apagar.load(Ordering::SeqCst) {
                 break;
             }
-            let Ok(flujo) = conexion else { continue };
+            let Ok(flujo) = conexion else {
+                // Sin descriptores (EMFILE), accept falla al
+                // instante: una pausa evita girar en vacío.
+                std::thread::sleep(Duration::from_millis(10));
+                continue;
+            };
             let almacen = Arc::clone(&self.almacen);
             let (espera, registro) = (self.espera, self.registro);
             grupo.ejecutar(move || {
@@ -131,6 +136,7 @@ impl Apagador {
     /// Marca el apagado y despierta a `incoming` conectándose.
     pub fn apagar(&self) {
         self.bandera.store(true, Ordering::SeqCst);
+        // En Windows no se conecta a 0.0.0.0: use 127.0.0.1.
         let _ = TcpStream::connect(self.dir);
     }
 }

@@ -1,0 +1,16 @@
+$ cargo test -p ej01-memoria --test ejercicios suma
+     Running tests/ejercicios.rs (target/debug/deps/ejercicios-...)
+
+running 2 tests
+test suma_que_desborda ... FAILED
+test suma_sin_desbordar ... FAILED
+
+failures:
+
+---- suma_que_desborda stdout ----
+
+thread 'suma_que_desborda' (8099138) panicked at
+  ejercicios/ej01-memoria/src/lib.rs:18:5:
+not yet implemented
+...
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; ...

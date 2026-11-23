@@ -3,6 +3,13 @@
 version = 4
 
 [[package]]
+name = "apendice-soluciones"
+version = "0.1.0"
+dependencies = [
+ "cap18-proyecto",
+]
+
+[[package]]
 name = "cap01-memoria"
 version = "0.1.0"
 

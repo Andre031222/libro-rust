@@ -1,6 +1,6 @@
 # Código del libro de Rust
 
-Ejemplos, ejercicios y herramientas del libro *Rust: seguridad, rendimiento y sistemas* (título provisional), de Richar Andre Vilca-Solorzano (LaCima, FINESI-UNAP).
+Ejemplos, ejercicios y herramientas del libro *Óxido. Rust para escribir software que no se rompe*, de Richar Andre Vilca-Solorzano (LaCima, FINESI-UNAP).
 
 El texto del libro **no** está en este repositorio; aquí solo vive el código que el libro cita, para que puedas ejecutarlo y modificarlo.
 

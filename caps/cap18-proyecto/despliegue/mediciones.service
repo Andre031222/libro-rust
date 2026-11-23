@@ -10,9 +10,12 @@ ExecStart=/usr/local/bin/mediciones 127.0.0.1:8080
 Restart=on-failure
 RestartSec=2s
 # Usuario sin privilegios, creado al arrancar y liberado al parar.
-# Implica ProtectSystem=strict y ProtectHome=read-only.
+# Implica NoNewPrivileges, RestrictSUIDSGID, PrivateTmp,
+# ProtectSystem=strict y ProtectHome=read-only; las líneas
+# siguientes las dejan explícitas por si se cambia a User=.
 DynamicUser=yes
 NoNewPrivileges=yes
+ProtectSystem=strict
 ProtectHome=yes
 PrivateTmp=yes
 

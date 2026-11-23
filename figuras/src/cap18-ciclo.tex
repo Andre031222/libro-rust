@@ -27,10 +27,10 @@
   \foreach \x/\y in {a/b,b/c,c/d,d/e,e/f,f/g} {\draw[->,very thick,carbon] (\x) -- (\y);}
   % Errores
   \def\xe{9.0}
-  \node[err] (ec) at (\xe,-2*\dy) {413 \,o\, 408};
+  \node[err] (ec) at (\xe,-2*\dy) {400, 408 \,o\, 413};
   \node[err] (ed) at (\xe,-3*\dy) {400 \,o\, 501};
   \node[err] (ee) at (\xe,-4*\dy) {400, 408, 413 \,o\, 501};
-  \foreach \p/\e/\m in {c/ec/{más de 8 KiB o lento},d/ed/{sintaxis o método},e/ee/{longitud o cuerpo}} {
+  \foreach \p/\e/\m in {c/ec/{corte, tamaño o espera},d/ed/{sintaxis o método},e/ee/{longitud o cuerpo}} {
     \draw[->,thick,oxido] (\p.east) -- node[rotulo,above=3pt] {\m} (\e.west);
   }
   \node[err,fill=white] (re) at (\xe,-6*\dy) {\texttt{Respuesta::error}};

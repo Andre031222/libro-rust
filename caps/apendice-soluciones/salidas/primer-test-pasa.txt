@@ -1,0 +1,10 @@
+$ cargo test -p ej01-memoria --test ejercicios suma
+   Compiling ej01-memoria v0.1.0 (~/libro-rust/ejercicios/ej01-memoria)
+    Finished `test` profile [unoptimized + debuginfo]
+     Running tests/ejercicios.rs (target/debug/deps/ejercicios-...)
+
+running 2 tests
+test suma_sin_desbordar ... ok
+test suma_que_desborda ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; ...
