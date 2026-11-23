@@ -3,7 +3,19 @@
 version = 4
 
 [[package]]
+name = "cap01-memoria"
+version = "0.1.0"
+
+[[package]]
+name = "cap02-historia"
+version = "0.1.0"
+
+[[package]]
 name = "cap06-propiedad"
+version = "0.1.0"
+
+[[package]]
+name = "ej01-memoria"
 version = "0.1.0"
 
 [[package]]

@@ -1,0 +1,26 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{arrows.meta,calc,positioning}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[>={Stealth[length=2mm]},
+  leng/.style={draw=carbon!60,rounded corners=2pt,fill=fondocodigo,font=\sffamily\footnotesize,inner sep=4pt,text width=30mm,align=center,execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}}]
+  \node[circle,fill=oxido,text=white,font=\sffamily\bfseries\large,minimum size=17mm] (rust) at (0,0) {Rust};
+  \foreach \ang/\l/\a in {
+     90/{SML, OCaml}/{tipos algebraicos, patrones, inferencia},
+     45/{C++}/{RAII, referencias, movimiento},
+      0/{Cyclone, ML Kit}/{memoria por regiones},
+    -45/{Haskell}/{clases de tipos},
+    -90/{Erlang}/{paso de mensajes},
+   -135/{Newsqueak, Alef, Limbo}/{canales},
+    180/{Scheme}/{macros higiénicas},
+    135/{NIL, Hermes}/{\emph{typestate}}}
+  {
+    \node[leng] (n\ang) at (\ang:4.3) {\textbf{\l}\\[1pt]{\scriptsize\color{carbon!75}\hyphenpenalty=10000 \a}};
+    \draw[->,oxido!70,thick,shorten >=1pt] (n\ang) -- (rust);
+  }
+\end{tikzpicture}
+\end{document}

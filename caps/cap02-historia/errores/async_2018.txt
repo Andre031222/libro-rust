@@ -1,0 +1,19 @@
+error: expected identifier, found keyword `async`
+ --> async_2015.rs:3:9
+  |
+3 |     let async = "un nombre cualquiera";
+  |         ^^^^^ expected identifier, found keyword
+  |
+help: escape `async` to use it as an identifier
+  |
+3 |     let r#async = "un nombre cualquiera";
+  |         ++
+
+error: expected one of `move`, `use`, `{`, `|`, or `||`, found `<eof>`
+ --> async_2015.rs:4:20
+  |
+4 |     println!("{}", async);
+  |                    ^^^^^ expected one of `move`, `use`, `{`, `|`, or `||`
+
+error: aborting due to 2 previous errors
+

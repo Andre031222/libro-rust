@@ -41,7 +41,7 @@ if [ -f "$LOG" ]; then
   grep -E "undefined" "$LOG" | grep -v "There were undefined" |
     while read -r l; do echo "✗ main.log: $l"; done > "$RAIZ/.verificar.tmp"
   grep -oE "Overfull \\\\hbox \(([0-9.]+)pt too wide\).*" "$LOG" |
-    awk '{ gsub(/[()pt]/, "", $3); if ($3 + 0 > 5) print "✗ main.log: " $0 }' \
+    awk '{ gsub(/[()pt]/, "", $3); if ($3 + 0 > 1) print "✗ main.log: " $0 }' \
     >> "$RAIZ/.verificar.tmp"
   if [ -s "$RAIZ/.verificar.tmp" ]; then
     cat "$RAIZ/.verificar.tmp"

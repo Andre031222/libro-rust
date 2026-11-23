@@ -1,0 +1,8 @@
+[package]
+name = "cap01-memoria"
+description = "Capítulo 1: la crisis de la memoria"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+publish = false

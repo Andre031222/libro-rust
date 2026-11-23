@@ -1,0 +1,38 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{arrows.meta,calc,positioning}
+\begin{document}
+\sffamily\small
+% Línea de tiempo vertical: año a la izquierda, hito a la derecha.
+\begin{tikzpicture}[
+  anio/.style={font=\sffamily\bfseries\small,text=oxido,anchor=east},
+  hito/.style={font=\sffamily\small,text=carbon,anchor=west,text width=96mm,align=left},
+  punto/.style={circle,fill=oxido,inner sep=2.1pt},
+  claro/.style={circle,draw=oxido,fill=white,line width=1pt,inner sep=1.8pt}]
+  \def\paso{0.82}
+  \draw[carbon!25,line width=1.2pt] (0,0.3) -- (0,-13*\paso-0.3);
+  \foreach \a/\t/\e [count=\i from 0] in {
+    2006/{Graydon Hoare empieza Rust como proyecto personal}/claro,
+    2009/{Mozilla patrocina el proyecto}/claro,
+    2010/{Presentación en el Mozilla Summit}/claro,
+    2011/{\texttt{rustc} se compila a sí mismo}/claro,
+    2012/{Rust 0.1; nace Servo en Mozilla Research}/claro,
+    2015/{\textbf{Rust 1.0}: compromiso de estabilidad}/punto,
+    2016/{Primer año como lenguaje «más amado» en Stack Overflow}/claro,
+    2017/{Stylo, escrito en Rust, llega a Firefox 57}/claro,
+    2018/{Edición 2018 (Rust 1.31)}/claro,
+    2020/{Despidos en Mozilla; Servo pasa a la Linux Foundation}/claro,
+    2021/{\textbf{Nace la Rust Foundation}}/punto,
+    2022/{Linux 6.1 incluye soporte inicial para Rust}/claro,
+    2023/{Leadership Council; primer código Rust en el núcleo de Windows}/claro,
+    2025/{Edición 2024 (Rust 1.85); Rust deja de ser experimental en Linux}/punto}
+  {
+    \node[\e] at (0,-\i*\paso) {};
+    \node[anio] at (-0.35,-\i*\paso) {\a};
+    \node[hito] at (0.3,-\i*\paso) {\hyphenpenalty=10000 \t};
+  }
+\end{tikzpicture}
+\end{document}

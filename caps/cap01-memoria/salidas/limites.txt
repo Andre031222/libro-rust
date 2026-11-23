@@ -1,0 +1,4 @@
+índice 7 fuera de límites
+pánico: panicked at caps/cap01-memoria/examples/limites.rs:19:41:
+index out of bounds: the len is 3 but the index is 7
+¿acceso [7] permitido? false

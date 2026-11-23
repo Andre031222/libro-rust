@@ -1,0 +1,28 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{arrows.meta,calc,decorations.pathreplacing}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[>={Stealth[length=2.2mm]},
+  b/.style={draw=carbon,minimum width=7mm,minimum height=7mm,inner sep=0,font=\ttfamily\small},
+  nota/.style={font=\sffamily\footnotesize,text=carbon!75}]
+  % Antes
+  \node[font=\sffamily\bfseries,anchor=west] at (-0.35,1.15) {Antes de \texttt{strcpy}};
+  \foreach \i in {0,...,7} \node[b,fill=fondocodigo] at (\i*0.7,0) {};
+  \foreach \i in {8,...,11} \node[b,fill=azul!15] at (\i*0.7,0) {0};
+  \draw[decorate,decoration={brace,amplitude=4pt,mirror}] (-0.35,-0.45) -- (5.25,-0.45) node[midway,below=5pt,nota] {\texttt{clave[8]}};
+  \draw[decorate,decoration={brace,amplitude=4pt,mirror}] (5.25,-0.45) -- (8.05,-0.45) node[midway,below=5pt,nota] {\texttt{acceso} (\texttt{int})};
+  % Después
+  \begin{scope}[yshift=-2.6cm]
+  \node[font=\sffamily\bfseries,anchor=west] at (-0.35,1.35) {Después de \texttt{strcpy(clave, "contraseña-larga")}};
+  \foreach \c [count=\i from 0] in {c,o,n,t,r,a,s,e} \node[b,fill=cobre!20] at (\i*0.7,0) {\c};
+  \foreach \c [count=\i from 8] in {C3,B1,a,-} \node[b,fill=oxido,text=white,font=\ttfamily\scriptsize] at (\i*0.7,0) {\c};
+  \node[nota,anchor=west] at (8.3,0) {\textcolor{oxido}{\bfseries\dots}\ y sigue};
+  \draw[->,very thick,oxido] (5.25,0.55) -- (8.05,0.55) node[midway,above,font=\sffamily\scriptsize\bfseries,text=oxido] {se escribe fuera del búfer};
+  \node[nota,anchor=north west,align=left] at (-0.35,-0.6) {Los bytes que no caben pisan la variable vecina (la ñ ocupa dos: C3 B1):\\\texttt{acceso} ya no vale 0, y nadie lo advirtió.};
+  \end{scope}
+\end{tikzpicture}
+\end{document}
