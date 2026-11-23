@@ -1,0 +1,2 @@
+s1 = hola, s2 = hola
+¿mismo bloque? false

@@ -1,0 +1,3 @@
+tomar recibió: propiedad
+copiar recibió: 42
+numero sigue disponible: 42
