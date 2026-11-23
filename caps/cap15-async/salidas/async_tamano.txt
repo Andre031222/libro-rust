@@ -1,0 +1,3 @@
+sin_estado:      1 bytes
+con_arreglo:  1026 bytes
+pila de un hilo nuevo: 2097152 bytes

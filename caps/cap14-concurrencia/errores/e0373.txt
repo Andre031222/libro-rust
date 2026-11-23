@@ -1,0 +1,21 @@
+error[E0373]: closure may outlive the current function, but it borrows `v`, which is owned by the current function
+ --> e0373.rs:5:30
+  |
+5 |     let hilo = thread::spawn(|| println!("{v:?}"));
+  |                              ^^            - `v` is borrowed here
+  |                              |
+  |                              may outlive borrowed value `v`
+  |
+note: function requires argument type to outlive `'static`
+ --> e0373.rs:5:16
+  |
+5 |     let hilo = thread::spawn(|| println!("{v:?}"));
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: to force the closure to take ownership of `v` (and any other referenced variables), use the `move` keyword
+  |
+5 |     let hilo = thread::spawn(move || println!("{v:?}"));
+  |                              ++++
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0373`.

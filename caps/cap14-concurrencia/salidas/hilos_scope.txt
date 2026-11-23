@@ -1,0 +1,2 @@
+total = 500500, máximo = 1000
+datos sigue disponible: 1000 elementos

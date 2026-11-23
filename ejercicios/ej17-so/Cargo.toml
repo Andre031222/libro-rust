@@ -1,0 +1,8 @@
+[package]
+name = "ej17-so"
+description = "Ejercicios del capítulo 17: Rust y sistemas operativos"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+publish = false

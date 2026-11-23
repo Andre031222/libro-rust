@@ -1,0 +1,9 @@
+A: paso 1
+B: paso 1
+C: paso 1
+A: paso 2
+B: paso 2
+C: fin
+A: fin
+B: paso 3
+B: fin

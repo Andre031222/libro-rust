@@ -1,0 +1,18 @@
+error[E0499]: cannot borrow `*v` as mutable more than once at a time
+ --> partir_sin_unsafe.rs:5:28
+  |
+2 |     v: &mut [i32],
+  |        - let's call the lifetime of this reference `'1`
+...
+5 |     (&mut v[..mitad], &mut v[mitad..])
+  |     -----------------------^----------
+  |     |     |                |
+  |     |     |                second mutable borrow occurs here
+  |     |     first mutable borrow occurs here
+  |     returning this value requires that `*v` is borrowed for `'1`
+  |
+  = help: use `.split_at_mut(position)` to obtain two mutable non-overlapping sub-slices
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0499`.

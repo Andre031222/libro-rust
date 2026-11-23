@@ -1,0 +1,4 @@
+B terminó su espera de 100 ms
+C terminó su espera de 200 ms
+A terminó su espera de 300 ms
+total: unos 300 ms, no 600

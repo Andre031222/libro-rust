@@ -1,0 +1,34 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{positioning,arrows.meta,calc}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[>={Stealth[length=2.4mm]},
+  actor/.style={draw=carbon,fill=arena,rounded corners=3pt,
+    minimum width=3.6cm,minimum height=0.95cm,align=center,font=\sffamily\bfseries},
+  msg/.style={->,thick,carbon!85},
+  ret/.style={->,thick,oxido,densely dashed},
+  et/.style={font=\sffamily\footnotesize,fill=white,inner sep=2pt},
+  nota/.style={font=\sffamily\footnotesize,text=carbon!75,align=left}]
+  % Participantes
+  \node[actor] (E) at (0,0) {Ejecutor\\[-2pt]\mdseries\footnotesize\texttt{bloquear}};
+  \node[actor] (F) at (6,0) {Futuro\\[-2pt]\mdseries\footnotesize\texttt{Temporizador}};
+  \node[actor] (H) at (12,0) {Fuente del evento\\[-2pt]\mdseries\footnotesize hilo que cuenta el tiempo};
+  \foreach \x in {0,6,12} \draw[carbon!35,thick] (\x,-0.5) -- (\x,-8.6);
+  % Mensajes
+  \draw[msg] (0,-1.3) -- node[et,above=1pt] {1. \texttt{poll(cx)}} (6,-1.3);
+  \draw[msg] (6,-2.2) -- node[et,above=1pt] {2. guarda \texttt{cx.waker().clone()}} (12,-2.2);
+  \draw[ret] (6,-3.1) -- node[et,above=1pt] {3. \texttt{Pending}} (0,-3.1);
+  % Espera
+  \fill[plomo] (-0.25,-3.5) rectangle (0.25,-5.3);
+  \node[nota,anchor=east] at (-0.45,-4.4) {4. duerme\\(\texttt{thread::park})};
+  \node[nota,anchor=west] at (12.3,-4.4) {pasa el tiempo:\\el evento ocurre};
+  \draw[msg,azul] (12,-5.3) -- node[et,above=1pt,text=azul,pos=0.25,align=center] {5. \texttt{waker.wake()}\\«vuelve a sondear»} (0,-5.3);
+  \draw[msg] (0,-6.4) -- node[et,above=1pt] {6. \texttt{poll(cx)} otra vez} (6,-6.4);
+  \draw[ret] (6,-7.4) -- node[et,above=1pt] {7. \texttt{Ready(valor)}} (0,-7.4);
+  \node[nota,anchor=east] at (-0.45,-7.4) {el ejecutor\\devuelve el valor};
+\end{tikzpicture}
+\end{document}

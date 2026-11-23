@@ -1,0 +1,3 @@
+Cabecera { version: 1, banderas: 0, entrada: 2, tamano: 4 }
+cuerpo: [90, 90, F4, EB]
+truncada: Some(Corta)

@@ -1,0 +1,12 @@
+[package]
+name = "cap16-unsafe"
+description = "Capítulo 16: unsafe y FFI con C"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+publish = false
+
+[lib]
+# `staticlib` produce libcap16_unsafe.a para enlazarla desde C.
+crate-type = ["rlib", "staticlib"]

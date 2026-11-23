@@ -1,0 +1,11 @@
+warning: unused implementer of `Future` that must be used
+ --> sin_await.rs:6:5
+  |
+6 |     guardar(7); // falta .await
+  |     ^^^^^^^^^^
+  |
+  = note: futures do nothing unless you `.await` or poll them
+  = note: `#[warn(unused_must_use)]` (part of `#[warn(unused)]`) on by default
+
+warning: 1 warning emitted
+

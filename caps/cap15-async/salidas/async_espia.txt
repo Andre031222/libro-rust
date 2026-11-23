@@ -1,0 +1,2 @@
+sondeo 1: Pending
+sondeo 2: Ready

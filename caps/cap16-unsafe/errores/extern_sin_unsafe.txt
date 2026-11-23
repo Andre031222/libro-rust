@@ -1,0 +1,21 @@
+error: extern blocks must be unsafe
+ --> extern_sin_unsafe.rs:3:1
+  |
+3 | / extern "C" {
+4 | |     fn abs(x: c_int) -> c_int;
+5 | | }
+  | |_^
+
+error: unsafe attribute used without unsafe
+ --> extern_sin_unsafe.rs:7:3
+  |
+7 | #[no_mangle]
+  |   ^^^^^^^^^ usage of unsafe attribute
+  |
+help: wrap the attribute in `unsafe(...)`
+  |
+7 | #[unsafe(no_mangle)]
+  |   +++++++         +
+
+error: aborting due to 2 previous errors
+

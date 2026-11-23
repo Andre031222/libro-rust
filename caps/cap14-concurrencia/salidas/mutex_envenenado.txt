@@ -1,0 +1,3 @@
+¿el hilo terminó bien? false
+¿envenenado? true
+el dato quedó en 70

@@ -1,0 +1,6 @@
+encola 'r'
+encola 'u'
+encola 's'
+encola 't'
+llena: se pierde '!'
+rust  (quedan 0)

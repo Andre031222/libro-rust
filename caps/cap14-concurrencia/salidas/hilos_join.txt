@@ -1,0 +1,4 @@
+main sigue trabajando mientras tanto
+hilo 1: suma = 500500
+hilo 2: suma = 2001000
+hilo 3: suma = 4501500

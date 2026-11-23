@@ -1,0 +1,13 @@
+[package]
+name = "cap17-so"
+description = "Capítulo 17: Rust y sistemas operativos"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+publish = false
+
+[features]
+# `alloc` es opcional: sin él, el crate usa solo `core`.
+default = ["alloc"]
+alloc = []

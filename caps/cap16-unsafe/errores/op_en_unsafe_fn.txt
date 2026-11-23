@@ -1,0 +1,18 @@
+warning[E0133]: dereference of raw pointer is unsafe and requires unsafe block
+ --> op_en_unsafe_fn.rs:5:5
+  |
+5 |     *p *= 2;
+  |     ^^ dereference of raw pointer
+  |
+  = note: raw pointers may be null, dangling or unaligned; they can violate aliasing rules and cause data races: all of these are undefined behavior
+note: an unsafe function restricts its caller, but its body is safe by default
+ --> op_en_unsafe_fn.rs:4:1
+  |
+4 | pub unsafe fn duplicar(p: *mut i32) {
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  = note: for more information, see <https://doc.rust-lang.org/edition-guide/rust-2024/unsafe-op-in-unsafe-fn.html>
+  = note: `#[warn(unsafe_op_in_unsafe_fn)]` (part of `#[warn(rust_2024_compatibility)]`) on by default
+
+warning: 1 warning emitted
+
+For more information about this error, try `rustc --explain E0133`.

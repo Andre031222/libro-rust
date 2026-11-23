@@ -1,0 +1,16 @@
+warning: this creates a dangling pointer because temporary `CString` is dropped at end of statement
+ --> puntero_temporal.rs:8:43
+  |
+8 |     let p = CString::new("hola").unwrap().as_ptr();
+  |             ----------------------------- ^^^^^^ pointer created here
+  |             |
+  |             this `CString` is dropped at end of statement
+  |
+  = help: bind the `CString` to a variable such that it outlives the pointer returned by `as_ptr`
+  = note: a dangling pointer is safe, but dereferencing one is undefined behavior
+  = note: returning a pointer to a local variable will always result in a dangling pointer
+  = note: for more information, see <https://doc.rust-lang.org/reference/destructors.html>
+  = note: `#[warn(dangling_pointers_from_temporaries)]` on by default
+
+warning: 1 warning emitted
+

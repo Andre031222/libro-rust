@@ -51,6 +51,22 @@ name = "cap13-punteros"
 version = "0.1.0"
 
 [[package]]
+name = "cap14-concurrencia"
+version = "0.1.0"
+
+[[package]]
+name = "cap15-async"
+version = "0.1.0"
+
+[[package]]
+name = "cap16-unsafe"
+version = "0.1.0"
+
+[[package]]
+name = "cap17-so"
+version = "0.1.0"
+
+[[package]]
 name = "ej01-memoria"
 version = "0.1.0"
 
@@ -92,6 +108,22 @@ version = "0.1.0"
 
 [[package]]
 name = "ej13-punteros"
+version = "0.1.0"
+
+[[package]]
+name = "ej14-concurrencia"
+version = "0.1.0"
+
+[[package]]
+name = "ej15-async"
+version = "0.1.0"
+
+[[package]]
+name = "ej16-unsafe"
+version = "0.1.0"
+
+[[package]]
+name = "ej17-so"
 version = "0.1.0"
 
 [[package]]

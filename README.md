@@ -34,3 +34,5 @@ cargo test -p ej06-propiedad
 ## Licencia
 
 El código se distribuye bajo la licencia MIT o Apache-2.0, a elección del usuario (`LICENSE-MIT`, `LICENSE-APACHE`). El texto y las figuras del libro tienen todos los derechos reservados.
+
+Excepción: `caps/cap17-so/linux/rust_minimal_extracto.rs` es un extracto breve de `samples/rust/rust_minimal.rs` del núcleo Linux (Rust for Linux Contributors) y conserva su licencia original, GPL-2.0.

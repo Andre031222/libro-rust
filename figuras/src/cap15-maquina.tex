@@ -1,0 +1,45 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{positioning,arrows.meta,calc}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[>={Stealth[length=2.4mm]},
+  cod/.style={anchor=west,font=\ttfamily\small,inner sep=1pt},
+  estado/.style={draw=carbon,fill=arena,rounded corners=3pt,
+    minimum width=5.4cm,minimum height=1.0cm,align=center,
+    inner sep=4pt},
+  nota/.style={font=\sffamily\footnotesize,text=carbon!75},
+  flecha/.style={->,thick,carbon!80}]
+  % Código de la función
+  \fill[fondocodigo] (-0.2,0.4) rectangle (6.6,-2.8);
+  \foreach \t [count=\i from 0] in {async fn pedir() -> u32 \{,
+      \ \ \ \ let a = leer(1).await;,
+      \ \ \ \ let b = leer(2).await;,
+      \ \ \ \ a + b,
+      \}} {\node[cod] at (0,-0.6*\i) {\t};}
+  \node[nota,anchor=west,align=left] at (7.0,-1.2)
+    {El compilador convierte\\el cuerpo en un \texttt{enum}\\con un estado por cada\\punto de espera:};
+  % Estados
+  \node[estado] (s0) at (5.2,-3.7)
+    {\textbf{Inicio}\\[-1pt]\footnotesize aún no se ha sondeado};
+  \node[estado,below=0.6cm of s0] (s1)
+    {\textbf{Espera 1}\\[-1pt]\footnotesize guarda el futuro de \texttt{leer(1)}};
+  \node[estado,below=0.6cm of s1] (s2)
+    {\textbf{Espera 2}\\[-1pt]\footnotesize guarda \texttt{a} y el futuro de \texttt{leer(2)}};
+  \node[estado,below=0.6cm of s2,fill=carbon,text=white] (s3)
+    {\textbf{Terminado}\\[-1pt]\footnotesize devolvió \texttt{Ready(a + b)}};
+  % Transiciones
+  \draw[flecha] (s0) -- node[nota,right=3pt] {primer \texttt{poll}} (s1);
+  \draw[flecha] (s1) -- node[nota,right=3pt] {\texttt{leer(1)} da \texttt{Ready(a)}} (s2);
+  \draw[flecha] (s2) -- node[nota,right=3pt] {\texttt{leer(2)} da \texttt{Ready(b)}} (s3);
+  % Bucles de Pending
+  \foreach \s in {s1,s2} {
+    \draw[->,thick,oxido] (\s.west) ++(0,0.22) arc[start angle=60,end angle=300,radius=0.26cm];
+    \node[nota,text=oxido,anchor=east,align=right] at ($(\s.west)+(-0.65,0)$)
+      {\texttt{Pending}:\\sigue aquí};
+  }
+\end{tikzpicture}
+\end{document}

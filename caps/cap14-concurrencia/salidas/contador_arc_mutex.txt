@@ -1,0 +1,2 @@
+total = 8000
+dueños: 1

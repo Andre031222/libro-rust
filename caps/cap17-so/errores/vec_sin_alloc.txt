@@ -1,0 +1,21 @@
+error: cannot find macro `println` in this scope
+ --> vec_sin_alloc.rs:5:5
+  |
+5 |     println!("{} pares", v.len());
+  |     ^^^^^^^
+
+error[E0425]: cannot find type `Vec` in this scope
+ --> vec_sin_alloc.rs:3:25
+  |
+3 | pub fn pares(n: u32) -> Vec<u32> {
+  |                         ^^^ not found in this scope
+
+error[E0425]: cannot find type `Vec` in this scope
+ --> vec_sin_alloc.rs:4:12
+  |
+4 |     let v: Vec<u32> = (0..n).filter(|x| x % 2 == 0).collect();
+  |            ^^^ not found in this scope
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0425`.

@@ -7,7 +7,7 @@ RAIZ="$(cd "$(dirname "$0")/.." && pwd)"
 MS="$RAIZ/01-manuscrito"
 ANCHO=66          # código: \small, Fira Mono 0.86, 133 mm
 ANCHO_SALIDA=80   # salidas de terminal: \footnotesize
-ANCHO_ERROR=140   # \compilador: 6,2 pt; >100 se parte dentro del recuadro (salida real de rustc)
+ANCHO_ERROR=150   # \compilador: 6,2 pt; >100 se parte dentro del recuadro (salida real de rustc)
 problemas=0
 falla() { echo "✗ $*"; problemas=$((problemas + 1)); }
 

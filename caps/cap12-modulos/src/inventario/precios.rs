@@ -1,15 +1,15 @@
-//! Precios con impuesto, en céntimos.
+//! Precios con impuesto, en centavos.
 
 /// Tasa del impuesto, en por ciento.
 pub(crate) const TASA: u64 = 18;
 
-/// Precio con impuesto, redondeado al céntimo.
+/// Precio con impuesto, redondeado al centavo.
 ///
 /// ```
 /// assert_eq!(cap12_modulos::precio_final(1000), 1180);
 /// ```
-pub fn precio_final(centimos: u64) -> u64 {
-    redondear(centimos * (100 + TASA))
+pub fn precio_final(centavos: u64) -> u64 {
+    redondear(centavos * (100 + TASA))
 }
 
 /// Divide entre 100 y redondea a la unidad más cercana.

@@ -1,0 +1,8 @@
+libres al arrancar: 125
+a = Marco(3) en 0x03000
+b = Marco(4) en 0x04000
+liberar a:      Ok(())
+liberar a otra: Err(DobleLiberacion)
+fuera de rango: Err(FueraDeRango)
+siguiente: Marco(3)
+libres al final: 123

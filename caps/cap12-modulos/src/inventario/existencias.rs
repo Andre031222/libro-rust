@@ -120,9 +120,9 @@ impl Existencias {
         self.cantidad / tiendas
     }
 
-    /// Valor de las existencias con impuesto, en céntimos.
-    pub fn valor(&self, centimos_unidad: u64) -> u64 {
-        precio_final(u64::from(self.cantidad) * centimos_unidad)
+    /// Valor de las existencias con impuesto, en centavos.
+    pub fn valor(&self, centavos_unidad: u64) -> u64 {
+        precio_final(u64::from(self.cantidad) * centavos_unidad)
     }
 
     /// Escribe `cantidad/capacidad` en el archivo `ruta`.

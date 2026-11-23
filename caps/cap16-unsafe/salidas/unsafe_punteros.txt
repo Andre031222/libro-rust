@@ -1,0 +1,2 @@
+p = 0x16dd09cfc, *p = 6
+suelto = 0x1234 (no se lee)

@@ -1,0 +1,4 @@
+1. llamo a saludar
+2. todavía no se ha impreso nada
+   dentro de saludar("Ada")
+3. el ejecutor lo terminó: 3
