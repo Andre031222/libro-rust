@@ -1,7 +1,7 @@
-//! Uso: portada-gen --semilla <u64> --motivo <grafo|oxido|fractal>
+//! Uso: portada-gen --semilla <u64> --motivo <grafo|oxido|fractal|flujo>
 //!                  --salida <ruta.svg>
 
-use portada_gen::{Motivo, generar};
+use portada_gen::{Motivo, generar, generar_pdf};
 use std::process::ExitCode;
 
 fn main() -> ExitCode {
@@ -18,6 +18,7 @@ fn main() -> ExitCode {
         Some("grafo") => Some(Motivo::Grafo),
         Some("oxido") => Some(Motivo::Oxido),
         Some("fractal") => Some(Motivo::Fractal),
+        Some("flujo") => Some(Motivo::Flujo),
         _ => None,
     };
     let (Some(semilla), Some(motivo), Some(salida)) =
@@ -25,11 +26,16 @@ fn main() -> ExitCode {
     else {
         eprintln!(
             "uso: portada-gen --semilla <u64> \
-             --motivo <grafo|oxido|fractal> --salida <ruta.svg>"
+             --motivo <grafo|oxido|fractal|flujo> --salida <ruta.svg>"
         );
         return ExitCode::FAILURE;
     };
-    match std::fs::write(&salida, generar(semilla, motivo)) {
+    let bytes = if salida.ends_with(".pdf") {
+        generar_pdf(semilla, motivo)
+    } else {
+        generar(semilla, motivo).into_bytes()
+    };
+    match std::fs::write(&salida, bytes) {
         Ok(()) => {
             println!("portada escrita en {salida}");
             ExitCode::SUCCESS

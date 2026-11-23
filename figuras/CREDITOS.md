@@ -20,3 +20,4 @@ Imágenes externas (solo CC0 o CC-BY): ninguna por ahora.
 | portada/oxido-2026.svg | oxido | 2026 |
 | portada/oxido-31415.svg | oxido | 31415 |
 | portada/oxido-7.svg | oxido | 7 |
+| (portada final) flujo | flujo | 7 y 1015 (PDF vectorial, compuesto en 01-manuscrito/portada) |
