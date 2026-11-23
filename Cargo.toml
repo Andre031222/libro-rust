@@ -6,5 +6,5 @@ members = ["caps/*", "ejercicios/*", "herramientas/portada-gen"]
 version = "0.1.0"
 edition = "2024"
 license = "MIT OR Apache-2.0"
-authors = ["Richar Andre Vilca-Solorzano"]
+authors = ["Richar Andre Vilca Solorzano", "Fred Torres Cruz"]
 repository = "https://github.com/Andre031222/libro-rust"

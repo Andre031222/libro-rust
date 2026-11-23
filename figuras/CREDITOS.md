@@ -1,6 +1,6 @@
 # Créditos de figuras
 
-Las figuras con fuente en `src/` son propias (© Richar Andre Vilca-Solorzano, todos los derechos reservados).
+Las figuras con fuente en `src/` son propias (© Richar Andre Vilca Solorzano y Fred Torres Cruz, todos los derechos reservados).
 
 Imágenes externas (solo CC0 o CC-BY): ninguna por ahora.
 

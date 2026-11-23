@@ -4,10 +4,10 @@ use crate::azar::{Azar, Ruido};
 use crate::escena::{ALTO, ANCHO, Color, Escena, Forma};
 use std::f64::consts::{PI, TAU};
 
-pub const OXIDO: Color = Color::hex(0xB7410E);
-pub const COBRE: Color = Color::hex(0xD27D2D);
+pub const OXIDO: Color = Color::hex(0xC83C06);
+pub const COBRE: Color = Color::hex(0xE5791A);
 pub const CARBON: Color = Color::hex(0x2B2B2B);
-pub const AZUL: Color = Color::hex(0x1F5F8B);
+pub const AZUL: Color = Color::hex(0x1565A8);
 pub const ARENA: Color = Color::hex(0xF4EDE4);
 const NOCHE: Color = Color::hex(0x120E0C);
 

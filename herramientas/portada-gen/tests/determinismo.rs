@@ -34,7 +34,7 @@ fn proporcion_17_por_24() {
 #[test]
 fn usa_la_paleta_del_libro() {
     for m in TODOS {
-        assert!(generar(7, m).contains("#B7410E"));
+        assert!(generar(7, m).contains("#C83C06"));
     }
 }
 
