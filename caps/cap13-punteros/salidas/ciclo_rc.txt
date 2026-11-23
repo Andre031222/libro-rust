@@ -1,0 +1,3 @@
+dueños de a: 2
+dueños de b: 2
+fin de main: nadie imprimió «libero»

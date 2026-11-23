@@ -1,0 +1,8 @@
+[package]
+name = "ej11-rasgos"
+description = "Ejercicios del capítulo 11: rasgos y genéricos"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+publish = false

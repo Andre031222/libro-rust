@@ -1,0 +1,3 @@
+padre: Some(5)
+rama: fuertes = 1, débiles = 1
+padre luego: None

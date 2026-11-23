@@ -1,0 +1,8 @@
+[package]
+name = "cap11-rasgos"
+description = "Capítulo 11: rasgos (traits) y genéricos"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+publish = false

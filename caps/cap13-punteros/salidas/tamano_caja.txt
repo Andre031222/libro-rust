@@ -1,0 +1,4 @@
+primer byte: 7
+Box<[u8; 1000000]>: 8 bytes
+Box<str>: 16 bytes
+Box<[i32]>: 16 bytes

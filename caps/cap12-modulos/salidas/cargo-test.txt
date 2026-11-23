@@ -1,0 +1,22 @@
+     Running tests/integracion.rs (target/debug/deps/integracion-...)
+
+running 4 tests
+test muchas_operaciones ... ignored, lenta: dos millones de operaciones
+test capacidad_cero_es_error ... ok
+test retirar_tras_agregar ... ok
+test valor_incluye_impuesto ... ok
+
+   Doc-tests cap12_modulos
+
+running 5 tests
+test .../existencias.rs - ...::Existencias::guardar (line 134) - compile ... ok
+test src/lib.rs - (line 6) ... ok
+test .../precios.rs - ...::precio_final (line 8) ... ok
+test .../existencias.rs - ...::Existencias::retirar (line 87) ... ok
+test .../existencias.rs - ...::Existencias::por_tienda (line 114)
+      - should panic ... ok
+
+running 1 test
+test .../existencias.rs - ...::Existencias (line 24) - compile fail ... ok
+
+all doctests ran in 0.41s; merged doctests compilation took 0.22s

@@ -1,0 +1,3 @@
+el mayor es pera
+lista = [1, 2]
+30

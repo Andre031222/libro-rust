@@ -1,0 +1,6 @@
+saldo: 70
+intento: Err(BorrowMutError)
+
+thread 'main' (6996566) panicked at examples/doble_mut.rs:16:29:
+RefCell already borrowed
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

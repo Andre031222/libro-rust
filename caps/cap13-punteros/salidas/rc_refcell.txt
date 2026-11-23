@@ -1,0 +1,5 @@
+Ana deposita 50
+Luis deposita 20
+Ana deposita 5
+movimientos: [50, 20, 5]
+total: 75, dueños: 3

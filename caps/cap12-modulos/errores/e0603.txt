@@ -1,0 +1,15 @@
+error[E0603]: function `redondear` is private
+  --> e0603.rs:13:29
+   |
+13 |     println!("{}", precios::redondear(250));
+   |                             ^^^^^^^^^ private function
+   |
+note: the function `redondear` is defined here
+  --> e0603.rs:6:5
+   |
+ 6 |     fn redondear(x: u64) -> u64 {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0603`.

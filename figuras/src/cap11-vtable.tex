@@ -1,0 +1,51 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{positioning,arrows.meta,calc,decorations.pathreplacing}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[>={Stealth[length=2.4mm]},
+  execute at begin node={\hyphenpenalty=10000},
+  celda/.style={draw=carbon,fill=arena,minimum height=8mm,minimum width=20mm,font=\ttfamily\small},
+  dato/.style={draw=carbon,very thick,fill=white,minimum height=8mm,minimum width=32mm,font=\ttfamily\small},
+  vt/.style={draw=carbon,fill=plomo,minimum height=7mm,minimum width=44mm,font=\ttfamily\small,anchor=north west,inner sep=3pt},
+  rotulo/.style={font=\sffamily\footnotesize,text=carbon!75},
+  titulo/.style={font=\sffamily\bfseries}]
+  % Puntero ancho: dos palabras
+  \node[titulo,anchor=west] at (-0.2,1.5) {\texttt{c: \&dyn Notificar}};
+  \node[celda] (p) at (0.8,0) {\sffamily\footnotesize datos};
+  \node[celda] (v) at (2.8,0) {\sffamily\footnotesize vtable};
+  \draw[decorate,decoration={brace,mirror,amplitude=5pt},thick,carbon!70]
+    ($(p.south west)+(0,-0.1)$) -- node[rotulo,below=6pt,align=center] {16 bytes: dos punteros\\de 8 bytes cada uno}
+    ($(v.south east)+(0,-0.1)$);
+  % El valor concreto
+  \node[titulo,anchor=west] at (6.0,1.5) {El valor (un \texttt{Sms})};
+  \node[dato,anchor=west] (sms) at (6.0,0.6) {Sms(987654321)};
+  \node[rotulo,anchor=west] at (6.0,-0.15) {4 bytes: un \texttt{u32}};
+  \draw[->,very thick,carbon,rounded corners=3pt] (p.north) -- (0.8,1.05) -- (5.5,1.05) |- (sms.west);
+  % La vtable
+  \node[titulo,anchor=west] at (6.0,-1.0) {vtable de \texttt{Sms} como \texttt{Notificar}};
+  \node[vt] (e1) at (6.0,-1.4) {drop\_in\_place};
+  \node[vt,below=0pt of e1] (e2) {tamaño = 4};
+  \node[vt,below=0pt of e2] (e3) {alineación = 4};
+  \node[vt,below=0pt of e3,fill=arena] (e4) {enviar};
+  \draw[->,very thick,carbon,rounded corners=3pt] (v.east) -- (5.0,0) |- (e1.west);
+  % Entradas comunes y entrada del método
+  \draw[decorate,decoration={brace,amplitude=5pt},thick,carbon!70]
+    ($(e1.north east)+(0.1,0)$) -- node[rotulo,right=7pt,align=left] {comunes a toda vtable:\\liberar y reservar el valor}
+    ($(e3.south east)+(0.1,0)$);
+  \node[draw=carbon!50,fill=fondocodigo,font=\ttfamily\footnotesize,anchor=west,inner sep=5pt] (fn) at ($(e4.east)+(1.0,0)$)
+    {<Sms as Notificar>::enviar};
+  \draw[->,thick,cobre] (e4.east) -- (fn.west);
+  % Llamada
+  \node[rotulo,anchor=north west,align=left] at (-0.2,-2.0)
+    {\texttt{c.enviar("hola")}:\\
+     1. lee el puntero a la vtable;\\
+     2. carga la entrada \texttt{enviar};\\
+     3. la llama con el puntero de datos.};
+  \node[rotulo,anchor=north west] at (-0.2,-4.6)
+    {El orden de las entradas es ilustrativo: la disposición de la vtable no está garantizada.};
+\end{tikzpicture}
+\end{document}

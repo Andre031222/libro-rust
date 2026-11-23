@@ -1,0 +1,4 @@
+correo a ana@ejemplo.org: pedido listo
+SMS al 987654321: pedido listo
+&Sms: 8 bytes
+&dyn: 16 bytes

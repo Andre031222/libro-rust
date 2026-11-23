@@ -1,0 +1,40 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{positioning,arrows.meta,calc,decorations.pathreplacing}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[>={Stealth[length=2.4mm]},
+  execute at begin node={\hyphenpenalty=10000},
+  fuente/.style={draw=carbon!50,fill=fondocodigo,align=left,font=\ttfamily\small,inner sep=6pt,text width=58mm},
+  copia/.style={draw=carbon,thick,fill=arena,align=left,font=\ttfamily\small,inner sep=6pt,text width=70mm},
+  rotulo/.style={font=\sffamily\footnotesize,text=carbon!75},
+  titulo/.style={font=\sffamily\bfseries}]
+  % Columna izquierda: el código que escribe el programador
+  \node[titulo,anchor=south west] at (0,0.55) {Código fuente};
+  \node[fuente,anchor=north west] (gen) at (0,0.4)
+    {fn maximo<\textcolor{oxido}{T}: PartialOrd + Copy>(\\
+     \ \ \ \ lista: \&[\textcolor{oxido}{T}]) -> \textcolor{oxido}{T} \{ ... \}};
+  \node[rotulo,anchor=south west] at (0,-1.55) {llamadas en el programa};
+  \node[fuente,anchor=west] (uso1) at (0,-2.0)
+    {maximo(\&[3, 9, 4])\hfill\textcolor{carbon!60}{// T = i32}};
+  \node[fuente,anchor=west] (uso2) at (0,-3.0)
+    {maximo(\&[2.5, -1.0])\hfill\textcolor{carbon!60}{// T = f64}};
+  % Columna derecha: lo que genera el compilador
+  \node[titulo,anchor=south west] at (8.6,-1.55) {Programa compilado: una copia por tipo};
+  \node[copia,anchor=west] (c1) at (8.6,-2.0)
+    {fn maximo\_i32(lista: \&[\textcolor{azul}{i32}]) -> \textcolor{azul}{i32}};
+  \node[copia,anchor=west] (c2) at (8.6,-3.0)
+    {fn maximo\_f64(lista: \&[\textcolor{azul}{f64}]) -> \textcolor{azul}{f64}};
+  % Flechas de monomorfización
+  \draw[->,very thick,cobre] (uso1.east) -- (c1.west);
+  \draw[->,very thick,cobre] (uso2.east) -- (c2.west);
+  \node[rotulo,anchor=south] at (7.5,-1.97) {al compilar};
+  % Nota al pie
+  \node[rotulo,anchor=north west,align=left] at (0,-3.75)
+    {Los nombres \texttt{maximo\_i32} y \texttt{maximo\_f64} son ilustrativos: el compilador usa otros.\\
+     Cada llamada salta directo a su copia; en ejecución no queda nada genérico que resolver.};
+\end{tikzpicture}
+\end{document}

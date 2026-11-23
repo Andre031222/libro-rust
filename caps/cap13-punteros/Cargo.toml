@@ -1,0 +1,8 @@
+[package]
+name = "cap13-punteros"
+description = "Capítulo 13: punteros inteligentes"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+publish = false

@@ -1,0 +1,10 @@
+warning: unresolved link to `Caja::sacar`
+ --> enlace_roto.rs:6:17
+  |
+6 |     /// Véase [`Caja::sacar`].
+  |                 ^^^^^^^^^^^ the struct `Caja` has no field or associated item named `sacar`
+  |
+  = note: `#[warn(rustdoc::broken_intra_doc_links)]` on by default
+
+warning: 1 warning emitted
+

@@ -1,0 +1,8 @@
+[package]
+name = "cap12-modulos"
+description = "Capítulo 12: módulos, crates, pruebas y documentación"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+publish = false

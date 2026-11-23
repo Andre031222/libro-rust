@@ -1,0 +1,2 @@
+al abrir: 12
+al cobrar 5: 7

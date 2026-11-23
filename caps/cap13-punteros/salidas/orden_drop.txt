@@ -1,0 +1,5 @@
+antes de drop(b)
+  libero b
+fin de main
+  libero c
+  libero a

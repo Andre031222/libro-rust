@@ -1,0 +1,22 @@
+error[E0038]: the trait `Duplicar` is not dyn compatible
+  --> e0038.rs:12:21
+   |
+12 |     let _x: Box<dyn Duplicar> = Box::new(5);
+   |                     ^^^^^^^^ `Duplicar` is not dyn compatible
+   |
+note: for a trait to be dyn compatible it needs to allow building a vtable
+      for more information, visit
+      <https://doc.rust-lang.org/reference/items/traits.html#dyn-compatibility>
+  --> e0038.rs:2:27
+   |
+ 1 | trait Duplicar {
+   |       -------- this trait is not dyn compatible...
+ 2 |     fn duplicar(&self) -> Self;
+   |                           ^^^^ ...because method `duplicar` references
+   |                                the `Self` type in its return type
+   = help: consider moving `duplicar` to another trait
+   = help: only type `i32` implements `Duplicar`; consider using it directly instead.
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0038`.

@@ -39,6 +39,18 @@ name = "cap10-colecciones"
 version = "0.1.0"
 
 [[package]]
+name = "cap11-rasgos"
+version = "0.1.0"
+
+[[package]]
+name = "cap12-modulos"
+version = "0.1.0"
+
+[[package]]
+name = "cap13-punteros"
+version = "0.1.0"
+
+[[package]]
 name = "ej01-memoria"
 version = "0.1.0"
 
@@ -68,6 +80,18 @@ version = "0.1.0"
 
 [[package]]
 name = "ej10-colecciones"
+version = "0.1.0"
+
+[[package]]
+name = "ej11-rasgos"
+version = "0.1.0"
+
+[[package]]
+name = "ej12-modulos"
+version = "0.1.0"
+
+[[package]]
+name = "ej13-punteros"
 version = "0.1.0"
 
 [[package]]

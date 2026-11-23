@@ -1,0 +1,6 @@
+tras crear a: 1
+tras clonar en b: 2
+dentro del bloque: 3
+tras el bloque: 2
+tras drop(a): 1
+b sigue leyendo: compartido
