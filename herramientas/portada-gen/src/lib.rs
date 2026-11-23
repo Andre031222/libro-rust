@@ -52,7 +52,8 @@ impl Azar {
 
     /// Número uniforme en [a, b).
     fn rango(&mut self, a: f64, b: f64) -> f64 {
-        let u = (self.siguiente() >> 11) as f64 / (1u64 << 53) as f64;
+        let u =
+            (self.siguiente() >> 11) as f64 / (1u64 << 53) as f64;
         a + u * (b - a)
     }
 
@@ -128,7 +129,8 @@ fn oxido(svg: &mut String, azar: &mut Azar) {
         let y = azar.rango(-200.0, ALTO + 200.0);
         let r = azar.rango(8.0, 260.0);
         let o = azar.rango(0.04, 0.28);
-        let color = azar.elegir(&[OXIDO, OXIDO, COBRE, ARENA, AZUL]);
+        let color =
+            azar.elegir(&[OXIDO, OXIDO, COBRE, ARENA, AZUL]);
         let _ = write!(
             svg,
             r#"<circle cx="{x:.1}" cy="{y:.1}" r="{r:.1}" fill="{color}" opacity="{o:.2}"/>"#

@@ -1,4 +1,4 @@
-// Dos errores clásicos de C que el compilador acepta en silencio.
+// Dos errores clásicos de C que el compilador no detiene.
 #include <stdlib.h>
 #include <string.h>
 

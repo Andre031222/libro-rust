@@ -2,7 +2,8 @@
 
 fn main() {
     let s1 = String::from("hola");
-    let s2 = s1.clone(); // copia profunda: dos bloques en el montículo
+    // copia profunda: dos bloques distintos en el montículo
+    let s2 = s1.clone();
 
     println!("s1 = {s1}, s2 = {s2}");
     println!(

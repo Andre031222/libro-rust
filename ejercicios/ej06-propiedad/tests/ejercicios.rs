@@ -25,10 +25,16 @@ fn duplicar_devuelve_dos_copias() {
 
 #[test]
 fn mover_mayor_en_empate_devuelve_a() {
-    assert_eq!(mover_mayor("ab".to_string(), "cd".to_string()), "ab");
+    assert_eq!(
+        mover_mayor("ab".to_string(), "cd".to_string()),
+        "ab"
+    );
 }
 
 #[test]
 fn mover_mayor_devuelve_la_mas_larga() {
-    assert_eq!(mover_mayor("a".to_string(), "xyz".to_string()), "xyz");
+    assert_eq!(
+        mover_mayor("a".to_string(), "xyz".to_string()),
+        "xyz"
+    );
 }

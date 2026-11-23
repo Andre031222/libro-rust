@@ -1,4 +1,4 @@
-//! Tipos `Copy`: viven solo en la pila y se copian bit a bit.
+//! Tipos `Copy`: no poseen recursos y se copian bit a bit.
 
 #[derive(Debug, Clone, Copy)]
 struct Punto {

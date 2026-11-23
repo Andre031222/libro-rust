@@ -2,7 +2,11 @@
 
 fn main() {
     let s1 = String::from("hola");
-    println!("s1 = {s1} (len {}, cap {})", s1.len(), s1.capacity());
+    println!(
+        "s1 = {s1} (len {}, cap {})",
+        s1.len(),
+        s1.capacity()
+    );
 
     let s2 = s1; // la propiedad pasa de s1 a s2
     println!("s2 = {s2}");
