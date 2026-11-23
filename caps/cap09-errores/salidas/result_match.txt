@@ -1,0 +1,3 @@
+"42" -> Ok(42)
+"4x" -> Err: invalid digit found in string
+"" -> Err: cannot parse integer from empty string

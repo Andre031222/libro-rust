@@ -1,0 +1,2 @@
+y = 4, cuadrado(y) = 16
+estado = calor

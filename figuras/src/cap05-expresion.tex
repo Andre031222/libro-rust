@@ -1,0 +1,32 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{positioning,arrows.meta,calc,decorations.pathreplacing}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[>={Stealth[length=2.2mm]},
+  cod/.style={anchor=west,font=\ttfamily\small,inner sep=1pt},
+  nota/.style={anchor=west,font=\sffamily\footnotesize,align=left},
+  marca/.style={rounded corners=1.5pt,line width=0.9pt}]
+  % Bloque de código
+  \fill[fondocodigo] (-0.25,0.45) rectangle (5.6,-3.45);
+  \node[cod] at (0,0)  {let y = \{};
+  \node[cod] (s) at (0.8,-1) {let x = 3;};
+  \node[cod] (e) at (0.8,-2) {x + 1};
+  \node[cod] at (0,-3) {\};};
+  % Marcas
+  \draw[marca,carbon!60,dashed] ([xshift=-2pt,yshift=2pt]s.north west) rectangle ([xshift=2pt,yshift=-2pt]s.south east);
+  \draw[marca,oxido] ([xshift=-2pt,yshift=2pt]e.north west) rectangle ([xshift=2pt,yshift=-2pt]e.south east);
+  % Notas
+  \draw[->,thick,carbon!60] (3.4,-1) -- (6.3,-1);
+  \node[nota,text=carbon!80] at (6.4,-1) {\textbf{sentencia}: termina en \texttt{;}\\y no produce valor};
+  \draw[->,thick,oxido] (2.0,-2) -- (6.3,-2);
+  \node[nota,text=oxido] at (6.4,-2) {\textbf{expresión final}, sin \texttt{;}:\\su valor (4) es el del bloque};
+  \draw[->,thick,azul] (0.75,-3) -- (6.3,-3);
+  \node[nota,text=azul] at (6.4,-3) {\textbf{el bloque \texttt{\{\ldots\}} es una expresión}:\\\texttt{y} recibe 4};
+  % Contraste
+  \node[nota,text=carbon!80] at (-0.25,-4.2) {Con \texttt{x + 1;} la última línea sería una sentencia y el bloque valdría \texttt{()}, el tipo unidad.};
+\end{tikzpicture}
+\end{document}

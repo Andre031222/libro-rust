@@ -1,0 +1,58 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{positioning,arrows.meta,calc,decorations.pathreplacing}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[>={Stealth[length=2.4mm]},
+  execute at begin node={\hyphenpenalty=10000},
+  pila/.style={draw=carbon,fill=arena,minimum height=7mm,minimum width=12mm,font=\ttfamily\small},
+  lleno/.style={draw=carbon,very thick,fill=white,minimum height=7mm,minimum width=9mm,font=\ttfamily\small,inner sep=0pt},
+  vacio/.style={draw=carbon!60,fill=plomo,minimum height=7mm,minimum width=9mm,inner sep=0pt},
+  viejo/.style={draw=carbon!35,dashed,fill=white,text=carbon!40,minimum height=7mm,minimum width=9mm,font=\ttfamily\small,inner sep=0pt},
+  rotulo/.style={font=\sffamily\footnotesize,text=carbon!75},
+  titulo/.style={font=\sffamily\bfseries,anchor=west}]
+  % ---- Antes: len 4, cap 4
+  \node[titulo] at (-1.4,1.3) {Antes de \texttt{v.push(5)}};
+  \foreach \c/\x [count=\i from 0] in {ptr/{},len/4,cap/4} {
+    \node[pila] (a\i) at (\i*1.2,0) {\x};
+    \node[rotulo] at (\i*1.2,0.6) {\c};
+  }
+  \node[anchor=east,font=\ttfamily\bfseries] at (-0.8,0) {v};
+  \foreach \x [count=\i from 0] in {1,2,3,4} {
+    \node[lleno] (h\i) at (5.6+\i*0.9,0) {\x};
+  }
+  \fill[carbon] (a0.center) circle (1.6pt);
+  \draw[->,very thick,carbon,rounded corners=3pt] (a0.center) -- (0,-0.7) -- (4.75,-0.7) -- (4.75,0) -- (h0.west);
+  \node[rotulo,anchor=west] at (9.35,0) {bloque lleno: \texttt{len == cap}};
+  % ---- Después: len 5, cap 8
+  \node[titulo] at (-1.4,-2.3) {Después};
+  \foreach \c/\x [count=\i from 0] in {ptr/{},len/5,cap/8} {
+    \node[pila] (b\i) at (\i*1.2,-3.4) {\x};
+    \node[rotulo] at (\i*1.2,-2.8) {\c};
+  }
+  \node[anchor=east,font=\ttfamily\bfseries] at (-0.8,-3.4) {v};
+  \foreach \x [count=\i from 0] in {1,2,3,4,5} {
+    \node[lleno] (n\i) at (5.6+\i*0.9,-3.4) {\x};
+  }
+  \foreach \i in {5,6,7} {\node[vacio] (n\i) at (5.6+\i*0.9,-3.4) {};}
+  \fill[carbon] (b0.center) circle (1.6pt);
+  \draw[->,very thick,carbon,rounded corners=3pt] (b0.center) -- (0,-4.1) -- (4.75,-4.1) -- (4.75,-3.4) -- (n0.west);
+  % Llaves de longitud y capacidad
+  \draw[decorate,decoration={brace,mirror,amplitude=5pt},thick,carbon!70]
+    ($(n0.south west)+(0,-0.1)$) -- node[rotulo,below=6pt] {\texttt{len} = 5 elementos}
+    ($(n4.south east)+(0,-0.1)$);
+  \draw[decorate,decoration={brace,mirror,amplitude=5pt},thick,carbon!70]
+    ($(n0.south west)+(0,-1.0)$) -- node[rotulo,below=6pt] {\texttt{cap} = 8 lugares reservados}
+    ($(n7.south east)+(0,-1.0)$);
+  % Bloque viejo liberado
+  \foreach \x [count=\i from 0] in {1,2,3,4} {
+    \node[viejo] (o\i) at (5.6+\i*0.9,-1.7) {\x};
+  }
+  \node[rotulo,anchor=west,align=left] at (9.35,-1.7) {bloque viejo: sus elementos\\se copian y se libera};
+  \draw[->,thick,cobre] (o0.south) -- (n0.north);
+  \draw[->,thick,cobre] (o3.south) -- (n3.north);
+\end{tikzpicture}
+\end{document}

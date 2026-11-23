@@ -1,0 +1,5 @@
+   el: 3
+    y: 2
+ gato: 1
+ loro: 1
+perro: 1

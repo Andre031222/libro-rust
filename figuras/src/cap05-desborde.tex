@@ -1,0 +1,44 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{positioning,arrows.meta,calc,decorations.pathreplacing}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[>={Stealth[length=2.2mm]},
+  caja/.style={draw=#1,line width=0.8pt,rounded corners=2pt,fill=white,align=center,
+    inner sep=6pt,font=\sffamily\small},
+  celda/.style={draw=carbon!50,fill=#1,minimum width=9mm,minimum height=6mm,
+    font=\ttfamily\small,inner sep=0pt},
+  celda/.default=white,
+  nota/.style={font=\sffamily\footnotesize,text=carbon!75,align=center}]
+  % Origen
+  \node[caja=carbon,fill=fondocodigo,font=\ttfamily\small] (op) at (0,0)
+    {let nivel: u8 = 255;\\nivel + 1};
+  % Ramas
+  \node[caja=oxido] (dbg) at (-3.6,-2.6)
+    {\textbf{\textcolor{oxido}{perfil dev}}\\[2pt]\texttt{overflow-checks = true}};
+  \node[caja=azul] (rel) at (3.6,-2.6)
+    {\textbf{\textcolor{azul}{perfil release}}\\[2pt]\texttt{overflow-checks = false}};
+  \draw[->,thick,oxido] (op.south west) ++(0.4,0) -- (dbg.north);
+  \draw[->,thick,azul] (op.south east) ++(-0.4,0) -- (rel.north);
+  \node[nota,anchor=east] at (-2.75,-1.05) {\texttt{cargo run}};
+  \node[nota,anchor=west] at (2.75,-1.05) {\texttt{cargo run -{}-release}};
+  % Resultado en debug
+  \node[caja=oxido,fill=oxido!6,below=9mm of dbg,font=\ttfamily\footnotesize] (panico)
+    {panicked at ...desborde.rs:12:21:\\attempt to add with overflow};
+  \draw[->,thick,oxido] (dbg) -- (panico);
+  \node[nota,below=2mm of panico] {el programa se detiene en la línea culpable};
+  % Resultado en release: la rueda de u8
+  \node[celda]        (c253) at (1.9,-4.45) {253};
+  \node[celda,right=0pt of c253] (c254) {254};
+  \node[celda=azul!12,right=0pt of c254] (c255) {255};
+  \node[celda=azul!30,right=7mm of c255] (c0) {0};
+  \node[celda,right=0pt of c0] (c1) {1};
+  \draw[->,thick,azul] (c255.east) -- node[below,nota,yshift=-1pt]{+1} (c0.west);
+  \draw[->,thick,azul] (rel.south -| c0.north) -- (c0.north);
+  \node[nota,anchor=north] at ($(c254.south)!0.5!(c1.south)+(0,-0.45)$)
+    {256 no cabe: se envuelve a 0\\sin aviso (complemento a dos)};
+\end{tikzpicture}
+\end{document}

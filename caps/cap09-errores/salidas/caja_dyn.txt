@@ -1,0 +1,2 @@
+total: 7.5
+Error: ParseFloatError { kind: Invalid }

@@ -1,0 +1,8 @@
+[package]
+name = "cap08-tipos-propios"
+description = "Capítulo 8: structs, enums y coincidencia de patrones"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+publish = false

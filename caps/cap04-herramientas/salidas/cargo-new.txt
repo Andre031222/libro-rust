@@ -1,0 +1,13 @@
+$ cargo new saludo
+    Creating binary (application) `saludo` package
+note: see more `Cargo.toml` keys and their definitions at
+      https://doc.rust-lang.org/cargo/reference/manifest.html
+$ cd saludo
+$ cargo run
+   Compiling saludo v0.1.0 (~/saludo)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.51s
+     Running `target/debug/saludo`
+Hello, world!
+$ cargo build --release
+   Compiling saludo v0.1.0 (~/saludo)
+    Finished `release` profile [optimized] target(s) in 0.16s

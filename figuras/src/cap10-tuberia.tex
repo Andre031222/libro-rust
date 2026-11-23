@@ -1,0 +1,50 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{positioning,arrows.meta,calc}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[>={Stealth[length=2mm]},
+  execute at begin node={\hyphenpenalty=10000},
+  celda/.style={draw=carbon!70,fill=white,minimum width=10mm,minimum height=6.5mm,
+    font=\ttfamily\small,inner sep=0pt},
+  fuera/.style={celda,draw=carbon!30,text=carbon!40,fill=plomo},
+  etapa/.style={rounded corners=2pt,fill=#1,text=white,font=\ttfamily\small,
+    inner sep=5pt,minimum width=28mm},
+  flujo/.style={->,thick,carbon!45},
+  nota/.style={font=\sffamily\footnotesize,text=carbon!75,align=center}]
+  \def\dy{0.95}
+  % Etapas
+  \node[etapa=carbon] at (0,1.2) {notas.iter()};
+  \node[etapa=oxido] at (3.8,1.2) {filter(n >= 11)};
+  \node[etapa=cobre] at (7.6,1.2) {map(n * 5)};
+  \node[etapa=azul] at (11.4,1.2) {collect()};
+  % Elementos
+  \foreach \v/\pasa/\w [count=\i from 0] in {12/1/60,17/1/85,8/0/0,15/1/75,20/1/100,9/0/0} {
+    \node[celda] (a\i) at (0,-\i*\dy) {\v};
+    \ifnum\pasa=1
+      \node[celda] (b\i) at (3.8,-\i*\dy) {\v};
+      \node[celda] (c\i) at (7.6,-\i*\dy) {\w};
+      \draw[flujo] (a\i) -- (b\i);
+      \draw[flujo] (b\i) -- (c\i);
+    \else
+      \node[fuera] (b\i) at (3.8,-\i*\dy) {\v};
+      \draw[flujo,carbon!25,dashed] (a\i) -- (b\i);
+      \node[font=\sffamily\footnotesize\bfseries,text=oxido,anchor=west] at (4.5,-\i*\dy) {descartado};
+    \fi
+  }
+  % Vec resultante: bloque contiguo
+  \foreach \w [count=\k from 0] in {60,85,75,100} {
+    \node[celda,fill=arena,minimum width=12mm] (v\k) at (11.4,-0.6-\k*0.65) {\w};
+  }
+  \draw[flujo] (c0.east) -- (v0.west);
+  \draw[flujo] (c1.east) -- (v1.west);
+  \draw[flujo] (c3.east) -- (v2.west);
+  \draw[flujo] (c4.east) -- (v3.west);
+  \node[nota,anchor=north] at (11.4,-3.3) {\texttt{Vec<i32>}\\nuevo};
+  \node[nota,anchor=north west,align=left] at (-0.6,-5.6) {Las etapas son perezosas: nada se evalúa hasta que \texttt{collect} pide
+    elementos,\\y cada uno recorre toda la tubería antes de que entre el siguiente.};
+\end{tikzpicture}
+\end{document}

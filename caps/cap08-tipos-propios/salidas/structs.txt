@@ -1,0 +1,4 @@
+Ada tiene 36 años
+Usuario { nombre: "Ada", edad: 36 }
+distancia: 42.5 m
+Metros(42.5) y Vacio

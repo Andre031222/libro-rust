@@ -1,0 +1,5 @@
+[60, 85, 75, 100]
+alumno 0: 12
+alumno 1: 17
+promedio ponderado = 13.50
+máxima = 20

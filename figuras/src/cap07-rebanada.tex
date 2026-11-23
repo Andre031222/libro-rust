@@ -1,0 +1,54 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Italic,BoldItalicFont=*-BoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium]
+\usetikzlibrary{positioning,arrows.meta,calc}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[
+  celda/.style={draw=carbon,minimum height=7mm,minimum width=14mm,font=\ttfamily\small},
+  byte/.style={draw=carbon,minimum height=7mm,minimum width=7mm,font=\ttfamily\small,fill=white},
+  rotulo/.style={font=\sffamily\footnotesize\color{carbon!75}},
+  flecha/.style={->,very thick,rounded corners=6pt},
+  >={Stealth[length=2.6mm]}]
+  % Pila: el String y dos rebanadas
+  \node[font=\sffamily\bfseries] at (1.4,1.2) {Pila (\textit{stack})};
+  \foreach \c/\v [count=\i from 0] in {ptr/{}, len/10, cap/10} {
+    \node[celda,fill=arena] (s\i) at (\i*1.4,0) {\v};
+    \node[rotulo] at (\i*1.4,0.55) {\c};
+  }
+  \node[anchor=east,font=\ttfamily\bfseries] at (-0.9,0) {s};
+  \foreach \c [count=\i from 0] in {ptr,len} {
+    \node[celda,fill=azul!12] (p\i) at (\i*1.4,-2.0) {};
+    \node[rotulo] at (\i*1.4,-1.45) {\c};
+    \node[celda,fill=azul!12] (m\i) at (\i*1.4,-3.8) {};
+    \node[rotulo] at (\i*1.4,-3.25) {\c};
+  }
+  \node[font=\ttfamily\small] at (p1) {4};
+  \node[font=\ttfamily\small] at (m1) {5};
+  \node[anchor=east,font=\ttfamily\bfseries] at (-0.9,-2.0) {hola};
+  \node[anchor=east,font=\ttfamily\bfseries] at (-0.9,-3.8) {mundo};
+  % Montículo: los 10 bytes de "hola mundo"
+  \node[font=\sffamily\bfseries] at (8.65,-0.75) {Montículo (\textit{heap})};
+  \foreach \l [count=\i from 0] in {h,o,l,a,{\color{carbon!45}\rule[-1pt]{3mm}{0.6pt}},m,u,n,d,o} {
+    \node[byte] (h\i) at (5.5+\i*0.7,-2.0) {\l};
+    \node[rotulo] at (5.5+\i*0.7,-1.45) {\i};
+  }
+  % Punteros: salen hacia abajo y van por pasillos libres
+  \fill[carbon] (s0.center) circle (1.6pt);
+  \draw[flecha,carbon] (s0.center) -- (0,-0.95) -- (4.55,-0.95)
+    -- (4.55,-1.85) -- ([yshift=1.5mm]h0.west);
+  \fill[azul] (p0.center) circle (1.6pt);
+  \draw[flecha,azul] (p0.center) -- (0,-2.8) -- (4.55,-2.8)
+    -- (4.55,-2.15) -- ([yshift=-1.5mm]h0.west);
+  \fill[azul] (m0.center) circle (1.6pt);
+  \draw[flecha,azul] (m0.center) -- (0,-4.6) -- (h5.south |- 0,-4.6)
+    -- (h5.south);
+  % Código y nota
+  \node[anchor=west,font=\ttfamily\small,align=left,fill=fondocodigo,inner sep=5pt]
+    at (-1.6,-5.75) {let s = String::from("hola mundo");\\let hola = \&s[..4];\\let mundo = \&s[5..];};
+  \node[anchor=west,font=\sffamily\footnotesize,text=carbon!75,align=left]
+    at (6.0,-5.75) {Una rebanada son dos números:\\dónde empieza y cuántos bytes mide.\\No copia el texto ni es su dueña.};
+\end{tikzpicture}
+\end{document}

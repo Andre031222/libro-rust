@@ -1,0 +1,6 @@
+Some(18)
+None
+Ok(18)
+Err(ParseIntError { kind: PosOverflow })
+Err("no hay nota 7")
+0

@@ -1,0 +1,8 @@
+[package]
+name = "cap09-errores"
+description = "Capítulo 9: manejo de errores"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+publish = false

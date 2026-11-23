@@ -1,0 +1,8 @@
+[package]
+name = "ej10-colecciones"
+description = "Ejercicios del capítulo 10: colecciones, iteradores y clausuras"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+publish = false

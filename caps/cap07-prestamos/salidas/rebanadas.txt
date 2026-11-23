@@ -1,0 +1,4 @@
+de un String: hola
+de un literal: tiempo
+todo: 100
+[1..3]: 50

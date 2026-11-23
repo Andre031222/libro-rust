@@ -1,0 +1,6 @@
+&u64             8
+Option<&u64>     8
+Box<u64>         8
+Option<Box<u64>> 8
+u64              8
+Option<u64>      16

@@ -11,7 +11,31 @@ name = "cap02-historia"
 version = "0.1.0"
 
 [[package]]
+name = "cap04-herramientas"
+version = "0.1.0"
+
+[[package]]
+name = "cap05-tipos"
+version = "0.1.0"
+
+[[package]]
 name = "cap06-propiedad"
+version = "0.1.0"
+
+[[package]]
+name = "cap07-prestamos"
+version = "0.1.0"
+
+[[package]]
+name = "cap08-tipos-propios"
+version = "0.1.0"
+
+[[package]]
+name = "cap09-errores"
+version = "0.1.0"
+
+[[package]]
+name = "cap10-colecciones"
 version = "0.1.0"
 
 [[package]]
@@ -19,7 +43,31 @@ name = "ej01-memoria"
 version = "0.1.0"
 
 [[package]]
+name = "ej04-herramientas"
+version = "0.1.0"
+
+[[package]]
+name = "ej05-tipos"
+version = "0.1.0"
+
+[[package]]
 name = "ej06-propiedad"
+version = "0.1.0"
+
+[[package]]
+name = "ej07-prestamos"
+version = "0.1.0"
+
+[[package]]
+name = "ej08-tipos-propios"
+version = "0.1.0"
+
+[[package]]
+name = "ej09-errores"
+version = "0.1.0"
+
+[[package]]
+name = "ej10-colecciones"
 version = "0.1.0"
 
 [[package]]

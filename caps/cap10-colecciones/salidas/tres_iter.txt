@@ -1,0 +1,3 @@
+total = 39.5
+con impuesto = [11.80, 30.09, 4.72]
+redondeados = [12, 30, 5]

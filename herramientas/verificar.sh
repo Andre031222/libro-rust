@@ -7,7 +7,7 @@ RAIZ="$(cd "$(dirname "$0")/.." && pwd)"
 MS="$RAIZ/01-manuscrito"
 ANCHO=66          # código: \small, Fira Mono 0.86, 133 mm
 ANCHO_SALIDA=80   # salidas de terminal: \footnotesize
-ANCHO_ERROR=100   # mensajes de rustc (\compilador): \scriptsize
+ANCHO_ERROR=140   # \compilador: 6,2 pt; >100 se parte dentro del recuadro (salida real de rustc)
 problemas=0
 falla() { echo "✗ $*"; problemas=$((problemas + 1)); }
 
@@ -16,17 +16,20 @@ if [ $# -eq 0 ]; then set -- "$MS"/capitulos/*.tex; fi
 # 1. Rutas de \codigo y \terminal; 2. ancho de los .rs citados.
 for tex in "$@"; do
   grep -oE '\\(codigo|terminal|compilador)(\[[^]]*\])?\{[^}]+\}' "$tex" |
-    sed -E 's/.*\{([^}]+)\}/\1/' | sort -u |
-    while read -r ruta; do
+    sed -E 's/^\\([a-z]+)(\[[^]]*\])?\{([^}]+)\}$/\1 \3/' | sort -u |
+    while read -r macro ruta; do
       if [ ! -f "$RAIZ/$ruta" ]; then
         echo "✗ $(basename "$tex"): no existe $ruta"
-      elif [[ "$ruta" == *.rs || "$ruta" == *.c || "$ruta" == *.txt ]]; then
-        n="$ANCHO"; [[ "$ruta" == *.txt ]] && n="$ANCHO_SALIDA"
-        [[ "$ruta" == */errores/*.txt ]] && n="$ANCHO_ERROR"
-        awk -v n="$n" -v r="$ruta" \
-          'length($0) > n { printf "✗ %s:%d: %d caracteres (máx. %d)\n", r, NR, length($0), n }' \
-          "$RAIZ/$ruta"
+        continue
       fi
+      case "$macro" in
+        codigo)     n="$ANCHO" ;;
+        terminal)   n="$ANCHO_SALIDA" ;;
+        compilador) n="$ANCHO_ERROR" ;;
+      esac
+      awk -v n="$n" -v r="$ruta" \
+        'length($0) > n { printf "✗ %s:%d: %d caracteres (máx. %d)\n", r, NR, length($0), n }' \
+        "$RAIZ/$ruta"
     done
 done > "$RAIZ/.verificar.tmp"
 if [ -s "$RAIZ/.verificar.tmp" ]; then

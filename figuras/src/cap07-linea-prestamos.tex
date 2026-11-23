@@ -1,0 +1,49 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{positioning,arrows.meta,calc,decorations.pathreplacing}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[>={Stealth[length=2.4mm]},
+  cod/.style={anchor=west,font=\ttfamily\small,inner sep=1pt},
+  nota/.style={font=\sffamily\footnotesize,text=carbon!75,anchor=west,align=left},
+  y=0.62cm]
+  % Código, una línea por fila
+  \fill[fondocodigo] (-0.2,0.5) rectangle (6.0,-7.5);
+  \foreach \t [count=\i from 0] in {{let mut v = vec![1, 2, 3];},
+      let a = \&v;,
+      let b = \&v;,
+      println!("\{a:?\} \{b:?\}");,
+      let c = \&mut v;,
+      c.push(4);,
+      println!("\{c:?\}");,
+      println!("\{v:?\}");} {\node[cod] at (0,-\i) {\t};}
+  % Encabezados de columnas
+  \foreach \n/\x in {v/6.7,a/7.5,b/8.3,c/9.1}
+    \node[font=\ttfamily\bfseries] at (\x,0.9) {\n};
+  % v: dueña todo el tiempo; libre (oscura) o prestada (clara)
+  \fill[carbon] (6.55,0.25) rectangle (6.85,-0.75);
+  \fill[carbon!25] (6.55,-0.75) rectangle (6.85,-6.25);
+  \fill[carbon] (6.55,-6.25) rectangle (6.85,-7.25);
+  % Lectores a y b (azul), escritor c (óxido)
+  \fill[azul] (7.35,-0.75) rectangle (7.65,-3.25);
+  \fill[azul] (8.15,-1.75) rectangle (8.45,-3.25);
+  \fill[oxido] (8.95,-3.75) rectangle (9.25,-6.25);
+  % Anotaciones a la derecha
+  \draw[carbon!50,decorate,decoration={brace,amplitude=4pt}]
+    (9.7,-0.75) -- (9.7,-3.25);
+  \node[nota] at (9.95,-2.0) {dos lectores a la vez:\\permitido};
+  \draw[carbon!50,decorate,decoration={brace,amplitude=4pt}]
+    (9.7,-3.75) -- (9.7,-6.25);
+  \node[nota] at (9.95,-5.0) {un solo escritor;\\nadie más usa v};
+  \node[nota] at (9.95,-6.75) {v vuelve a estar libre};
+  % Leyenda
+  \node[nota] at (-0.2,-8.3) {\textcolor{carbon}{\rule{8pt}{8pt}}\, v libre\quad
+    \textcolor{carbon!25}{\rule{8pt}{8pt}}\, v prestada\quad
+    \textcolor{azul}{\rule{8pt}{8pt}}\, préstamo \texttt{\&}\quad
+    \textcolor{oxido}{\rule{8pt}{8pt}}\, préstamo \texttt{\&mut}};
+  \node[nota] at (-0.2,-8.95) {Cada préstamo vive desde que se crea hasta su último uso, no hasta la llave de cierre.};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,13 @@
+$ rustc --edition 2024 --crate-type=lib -C opt-level=3 \
+    --emit=llvm-ir,asm doble.rs
+$ grep -A4 define doble.ll
+define noundef range(i32 0, -1) i32 @doble(i32 noundef %x) unnamed_addr #0 {
+start:
+  %_0 = shl i32 %x, 1
+  ret i32 %_0
+}
+$ grep -A3 '^_doble:' doble.s
+_doble:
+    .cfi_startproc
+    lsl     w0, w0, #1
+    ret

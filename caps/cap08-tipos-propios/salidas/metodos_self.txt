@@ -1,0 +1,2 @@
+saldo: 150 (Cuenta { titular: "Grace", saldo: 150 })
+cerrada la cuenta de Grace

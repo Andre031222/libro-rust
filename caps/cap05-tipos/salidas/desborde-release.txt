@@ -1,0 +1,2 @@
+nivel = 255
+nivel + 1 = 0

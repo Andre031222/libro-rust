@@ -1,0 +1,4 @@
+42: 42 años
+doce: error: no es un número
+    causa: invalid digit found in string
+200: error: edad absurda: 200

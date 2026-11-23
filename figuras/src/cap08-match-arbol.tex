@@ -1,0 +1,32 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{positioning,arrows.meta,calc,shapes.geometric}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[>={Stealth[length=2.4mm]},
+  prueba/.style={draw=carbon,fill=fondocodigo,rounded corners=2pt,minimum width=46mm,minimum height=8mm,font=\ttfamily\small,align=center},
+  hoja/.style={draw=oxido,fill=oxido!10,rounded corners=8pt,minimum width=26mm,minimum height=8mm,font=\ttfamily\small},
+  si/.style={font=\sffamily\footnotesize\bfseries,text=azul},
+  no/.style={font=\sffamily\footnotesize\bfseries,text=carbon!60},
+  nota/.style={font=\sffamily\footnotesize,text=carbon!75,anchor=west,align=left}]
+  \node[draw=carbon,fill=arena,rounded corners=2pt,minimum width=46mm,minimum height=8mm,font=\ttfamily\small] (n) at (0,1.2) {match n};
+  \node[prueba] (p1) at (0,0) {¿None?};
+  \node[prueba] (p2) at (0,-1.2) {¿Some(0)?};
+  \node[prueba] (p3) at (0,-2.4) {¿Some(k) con k < 0?};
+  \node[prueba] (p4) at (0,-3.6) {Some(\_)};
+  \node[hoja] (h1) at (6.2,0) {"nada"};
+  \node[hoja] (h2) at (6.2,-1.2) {"cero"};
+  \node[hoja] (h3) at (6.2,-2.4) {"negativo"};
+  \node[hoja] (h4) at (6.2,-3.6) {"positivo"};
+  \draw[->,thick,carbon] (n) -- (p1);
+  \foreach \i in {1,2,3,4} \draw[->,thick,azul] (p\i) -- node[si,above] {sí} (h\i);
+  \foreach \i/\j in {1/2,2/3,3/4} \draw[->,thick,carbon!60] (p\i) -- node[no,right] {no} (p\j);
+  % Notas
+  \node[nota] at (8.0,-2.4) {patrón + guarda\\(\texttt{if k < 0})};
+  \node[nota] at (8.0,-3.6) {comodín: atrapa\\todo lo que queda};
+  \node[nota] at (-2.3,-4.6) {Los brazos se prueban de arriba abajo y gana el primero que coincide.\\El compilador comprueba que toda entrada llegue a una hoja.};
+\end{tikzpicture}
+\end{document}

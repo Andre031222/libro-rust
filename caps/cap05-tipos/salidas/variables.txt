@@ -1,0 +1,5 @@
+x = 5, contador = 1
+dentro del bloque: x = texto
+fuera del bloque: x = 10
+espacios = 3
+hola: una hora tiene 3600 s

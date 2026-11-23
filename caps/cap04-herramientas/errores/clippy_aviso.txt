@@ -1,0 +1,16 @@
+warning: the loop variable `i` is only used to index `datos`
+ --> clippy_aviso.rs:3:14
+  |
+3 |     for i in 0..datos.len() {
+  |              ^^^^^^^^^^^^^^
+  |
+  = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.96.0/index.html#needless_range_loop
+  = note: `#[warn(clippy::needless_range_loop)]` on by default
+help: consider using an iterator
+  |
+3 -     for i in 0..datos.len() {
+3 +     for <item> in &datos {
+  |
+
+warning: 1 warning emitted
+

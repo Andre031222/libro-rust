@@ -1,0 +1,46 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{positioning,arrows.meta,calc,decorations.pathreplacing}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[>={Stealth[length=2.2mm]},
+  etapa/.style={draw=carbon!70,rounded corners=2pt,fill=#1,minimum width=34mm,
+    minimum height=7mm,font=\sffamily\small,inner sep=3pt},
+  etapa/.default=white,
+  nota/.style={anchor=west,font=\sffamily\footnotesize,text=carbon!80,align=left},
+  flecha/.style={->,thick,carbon!70}]
+  \def\paso{1.15}
+  \node[etapa=fondocodigo] (e0) at (0,0)         {código fuente (\texttt{.rs})};
+  \node[etapa]             (e1) at (0,-1*\paso)  {tokens};
+  \node[etapa]             (e2) at (0,-2*\paso)  {AST};
+  \node[etapa=arena]       (e3) at (0,-3*\paso)  {HIR};
+  \node[etapa=arena]       (e4) at (0,-4*\paso)  {THIR};
+  \node[etapa=arena]       (e5) at (0,-5*\paso)  {MIR};
+  \node[etapa=azul!10]     (e6) at (0,-6*\paso)  {LLVM IR};
+  \node[etapa=azul!10]     (e7) at (0,-7*\paso)  {código objeto (\texttt{.o})};
+  \node[etapa=plomo]       (e8) at (0,-8*\paso)  {ejecutable};
+  \foreach \a/\b in {0/1,1/2,2/3,3/4,4/5,5/6,6/7,7/8} {\draw[flecha] (e\a) -- (e\b);}
+  % Qué se hace en cada representación
+  \foreach \i/\t in {0/{el texto que usted escribe},
+      1/{palabras y símbolos (análisis léxico)},
+      2/{árbol sintáctico; expansión de macros y nombres},
+      3/{inferencia y comprobación de tipos (E0308)},
+      4/{comprobación de patrones exhaustivos},
+      5/{comprobador de préstamos (E0382) y optimizaciones},
+      6/{LLVM optimiza según el perfil (\texttt{opt-level})},
+      7/{instrucciones de la arquitectura destino},
+      8/{el enlazador une los objetos y las bibliotecas}} {
+    \draw[carbon!25,dotted,line width=0.8pt] (e\i.east) -- (2.4,-\i*\paso);
+    \node[nota] at (2.5,-\i*\paso) {\t};}
+  % Llaves de responsabilidad
+  \draw[decorate,decoration={brace,amplitude=5pt,mirror},thick,oxido]
+    (-2.1,0.3) -- node[left=8pt,font=\sffamily\footnotesize\bfseries,text=oxido,align=right]{rustc} (-2.1,-5*\paso-0.3);
+  \draw[decorate,decoration={brace,amplitude=5pt,mirror},thick,azul]
+    (-2.1,-6*\paso+0.3) -- node[left=8pt,font=\sffamily\footnotesize\bfseries,text=azul]{LLVM} (-2.1,-7*\paso-0.3);
+  \draw[decorate,decoration={brace,amplitude=4pt,mirror},thick,carbon!60]
+    (-2.1,-8*\paso+0.3) -- node[left=8pt,font=\sffamily\footnotesize\bfseries,text=carbon!70]{enlazador} (-2.1,-8*\paso-0.3);
+\end{tikzpicture}
+\end{document}

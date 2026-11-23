@@ -1,0 +1,17 @@
+error[E0384]: cannot assign twice to immutable variable `total`
+ --> e0384.rs:4:5
+  |
+2 |     let total = 10;
+  |         ----- first assignment to `total`
+3 |     println!("{total}");
+4 |     total = 20;
+  |     ^^^^^^^^^^ cannot assign twice to immutable variable
+  |
+help: consider making this binding mutable
+  |
+2 |     let mut total = 10;
+  |         +++
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0384`.

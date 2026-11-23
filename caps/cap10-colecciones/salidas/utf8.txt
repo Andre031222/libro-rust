@@ -1,0 +1,8 @@
+bytes: 4
+caracteres: 3
+[97, 195, 177, 111]
+añ
+None
+byte 0: a
+byte 1: ñ
+byte 3: o

@@ -1,0 +1,6 @@
+char: 4 B
+u8:   1 B
+'ñ' = U+00F1
+'ñ' ocupa 2 B en UTF-8
+'a' ocupa 1 B en UTF-8
+b'n' = 110

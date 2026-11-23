@@ -1,0 +1,2 @@
+hola mide 4 bytes
+ahora: hola!

@@ -1,0 +1,37 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{positioning,arrows.meta,calc}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[>={Stealth[length=2.4mm]},
+  execute at begin node={\hyphenpenalty=10000},
+  marco/.style={draw=carbon!50,fill=fondocodigo,minimum width=76mm,
+    minimum height=12mm,anchor=west,inner sep=5pt},
+  fn/.style={font=\sffamily\footnotesize\bfseries,text=carbon!80,anchor=south west,inner sep=2pt},
+  cod/.style={font=\ttfamily\small,anchor=west,inner sep=0pt},
+  eti/.style={font=\sffamily\footnotesize,text=carbon!80,align=left,anchor=west}]
+  % Marcos de la pila de llamadas: quien llama, arriba.
+  \node[marco] (m) at (0,0) {};
+  \node[fn] at (m.north west) {main};
+  \node[cod] at (0.25,0) {match leer\_edad("doce") \{ ... \}};
+  \node[marco] (l) at (0,-2.6) {};
+  \node[fn] at (l.north west) {leer\_edad};
+  \node[cod] at (0.25,-2.6) {let n: i32 = texto.trim().parse()\textcolor{oxido}{\textbf{?}};};
+  \node[marco] (s) at (0,-5.2) {};
+  \node[fn] at (s.north west) {str::parse};
+  \node[cod] at (0.25,-5.2) {Err(ParseIntError \{ InvalidDigit \})};
+  % Camino del error: sube por la izquierda.
+  \draw[->,very thick,oxido] (-0.35,-5.2) -- (-0.35,-2.75);
+  \draw[->,very thick,oxido] (-0.35,-2.45) -- (-0.35,0);
+  \node[eti,anchor=east,align=right] at (-0.6,-3.9) {devuelve\\\texttt{Err(ParseIntError)}};
+  \node[eti,anchor=east,align=right] at (-0.6,-1.3) {\texttt{?} convierte con\\\texttt{From::from(e)} y\\hace \texttt{return Err(...)}};
+  % A la derecha: qué ocurre en cada marco.
+  \node[eti,text width=42mm] at (8.2,0) {recibe\\\texttt{Err(ErrorEdad::NoNumero)}};
+  \node[eti,text width=42mm] at (8.2,-2.6) {con \texttt{Ok(n)}, \texttt{?} entrega
+    \texttt{n} y la función sigue};
+  \node[eti,text width=42mm] at (8.2,-5.2) {el error nace aquí};
+\end{tikzpicture}
+\end{document}

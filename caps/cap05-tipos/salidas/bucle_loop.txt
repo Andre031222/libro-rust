@@ -1,0 +1,1 @@
+primera potencia de 2 mayor que 100: 128
