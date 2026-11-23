@@ -1,0 +1,24 @@
+# Manuscrito y gestión: solo en local
+00-gestion/
+01-manuscrito/
+.superpowers/
+
+# Rust
+target/
+
+# LaTeX y PDF (las figuras sí se versionan)
+*.pdf
+!figuras/**/*.pdf
+*.aux
+*.log
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.fdb_latexmk
+*.fls
+*.xdv
+*.toc
+*.out
+
+.DS_Store

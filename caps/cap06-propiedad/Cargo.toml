@@ -1,0 +1,8 @@
+[package]
+name = "cap06-propiedad"
+description = "Capítulo 6: propiedad (ownership)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+publish = false

@@ -1,0 +1,10 @@
+[workspace]
+resolver = "3"
+members = ["caps/*"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+authors = ["Richar Andre Vilca-Solorzano"]
+repository = "https://github.com/Andre031222/libro-rust"
