@@ -16,13 +16,13 @@
   \draw[decorate,decoration={brace,amplitude=4pt,mirror}] (-0.35,-0.45) -- (5.25,-0.45) node[midway,below=5pt,nota] {\texttt{clave[8]}};
   \draw[decorate,decoration={brace,amplitude=4pt,mirror}] (5.25,-0.45) -- (8.05,-0.45) node[midway,below=5pt,nota] {\texttt{acceso} (\texttt{int})};
   % Después
-  \begin{scope}[yshift=-2.6cm]
+  \begin{scope}[yshift=-2.95cm]
   \node[font=\sffamily\bfseries,anchor=west] at (-0.35,1.35) {Después de \texttt{strcpy(clave, "contraseña-larga")}};
   \foreach \c [count=\i from 0] in {c,o,n,t,r,a,s,e} \node[b,fill=cobre!20] at (\i*0.7,0) {\c};
   \foreach \c [count=\i from 8] in {C3,B1,a,-} \node[b,fill=oxido,text=white,font=\ttfamily\scriptsize] at (\i*0.7,0) {\c};
   \node[nota,anchor=west] at (8.3,0) {\textcolor{oxido}{\bfseries\dots}\ y sigue};
   \draw[->,very thick,oxido] (5.25,0.55) -- (8.05,0.55) node[midway,above,font=\sffamily\scriptsize\bfseries,text=oxido] {se escribe fuera del búfer};
-  \node[nota,anchor=north west,align=left] at (-0.35,-0.6) {Los bytes que no caben pisan la variable vecina (la ñ ocupa dos: C3 B1):\\\texttt{acceso} ya no vale 0, y nadie lo advirtió.};
+  \node[nota,anchor=north west,align=left] at (-0.35,-0.6) {Los bytes que no caben pisan la variable vecina (la ñ ocupa dos: C3 B1):\\\texttt{acceso} ya no vale 0, y el programa no lo advierte.};
   \end{scope}
 \end{tikzpicture}
 \end{document}
