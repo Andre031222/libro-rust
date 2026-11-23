@@ -1,0 +1,4 @@
+imagen 65536 x 16384, límite 16777216 bytes
+bytes (ingenuo):     0
+¿acepta? ingenuo:    true
+¿acepta? corregido:  false

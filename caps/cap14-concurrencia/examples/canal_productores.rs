@@ -16,7 +16,6 @@ fn main() {
     }
     drop(tx); // sin esta línea, el consumidor esperaría siempre
 
-    // `iter` termina cuando ya no queda ningún emisor vivo
     let mut recibidos: Vec<String> = rx.iter().collect();
     println!("recibí {} mensajes", recibidos.len());
     recibidos.sort(); // el orden de llegada varía

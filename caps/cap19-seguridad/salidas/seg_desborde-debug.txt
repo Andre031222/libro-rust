@@ -1,0 +1,5 @@
+imagen 65536 x 16384, límite 16777216 bytes
+
+thread 'main' (7682992) panicked at caps/cap19-seguridad/src/tamanos.rs:8:5:
+attempt to multiply with overflow
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

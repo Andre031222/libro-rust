@@ -1,0 +1,8 @@
+[package]
+name = "cap19-seguridad"
+description = "Capítulo 19: seguridad sin mitos"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+publish = false

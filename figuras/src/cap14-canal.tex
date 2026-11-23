@@ -14,7 +14,7 @@
   % Productores
   \node[font=\sffamily\bfseries] at (0,2.4) {Productores};
   \foreach \i/\y in {0/1.2,1/-0.3,2/-1.8} {
-    \node[hilo] (p\i) at (0,\y) {hilo \texttt{p\i}\\[-1pt]{\footnotesize\ttfamily tx.clone()}};
+    \node[hilo] (p\i) at (0,\y) {hilo \texttt{p\i}\\[-1pt]{\footnotesize su clon de \texttt{tx}}};
   }
   % Cola del canal
   \node[font=\sffamily\bfseries] at (6.3,2.4) {Canal \texttt{mpsc}};
@@ -24,7 +24,7 @@
   \node[draw=azul,thick,inner sep=6pt,fit=(m0)(m3),label={[rotulo]below:cola FIFO: el orden de llegada varía}] (cola) {};
   % Consumidor
   \node[font=\sffamily\bfseries] at (11.6,2.4) {Consumidor};
-  \node[hilo,fill=azul!10] (c) at (11.6,-0.3) {hilo \texttt{main}\\[-1pt]{\footnotesize\ttfamily rx.recv()}};
+  \node[hilo,fill=azul!10] (c) at (11.6,-0.3) {hilo \texttt{main}\\[-1pt]{\footnotesize\ttfamily rx.iter()}};
   % Flechas
   \foreach \i in {0,1,2} {
     \draw[->,very thick,carbon] (p\i.east) -- ($(cola.west)+(0,{0.35*(1-\i)})$);
@@ -32,9 +32,9 @@
   \node[rotulo,fill=white,inner sep=1pt] at (2.35,1.05) {\texttt{send}};
   \draw[->,very thick,carbon] (cola.east) -- (c.west);
   % Notas
-  \node[rotulo,align=center] at (0,-3.0) {muchos \texttt{Sender}:\\se clonan};
+  \node[rotulo,align=center] at (0,-3.0) {muchos \texttt{Sender}: \texttt{main}\\los crea con \texttt{tx.clone()}};
   \node[rotulo,align=center] at (11.6,-1.65) {un solo \texttt{Receiver}};
   \node[rotulo,align=left,anchor=north west] at (3.6,-1.8)
-    {\texttt{recv} espera si la cola está vacía y devuelve \texttt{Err}\\cuando ya no queda ningún \texttt{Sender} vivo.};
+    {\texttt{iter} espera si la cola está vacía y termina\\cuando ya no queda ningún \texttt{Sender} vivo.};
 \end{tikzpicture}
 \end{document}

@@ -1,0 +1,6 @@
+HTTP/1.1 201 Created
+    {"id":1,"estacion":"puno","valor":12.5}
+HTTP/1.1 200 OK
+    [{"id":1,"estacion":"puno","valor":12.5}]
+HTTP/1.1 404 Not Found
+    {"error":"no existe esa medicion"}

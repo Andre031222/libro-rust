@@ -1,0 +1,9 @@
+marzo.txt
+  ingenua: /srv/informes/marzo.txt
+  segura:  /srv/informes/marzo.txt
+../../etc/passwd
+  ingenua: /srv/informes/../../etc/passwd
+  segura:  rechazada (SaleDeLaBase)
+/etc/passwd
+  ingenua: /etc/passwd
+  segura:  rechazada (SaleDeLaBase)

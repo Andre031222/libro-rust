@@ -67,6 +67,18 @@ name = "cap17-so"
 version = "0.1.0"
 
 [[package]]
+name = "cap18-proyecto"
+version = "0.1.0"
+
+[[package]]
+name = "cap19-seguridad"
+version = "0.1.0"
+
+[[package]]
+name = "cap20-futuro"
+version = "0.1.0"
+
+[[package]]
 name = "ej01-memoria"
 version = "0.1.0"
 
@@ -124,6 +136,17 @@ version = "0.1.0"
 
 [[package]]
 name = "ej17-so"
+version = "0.1.0"
+
+[[package]]
+name = "ej18-proyecto"
+version = "0.1.0"
+dependencies = [
+ "cap18-proyecto",
+]
+
+[[package]]
+name = "ej19-seguridad"
 version = "0.1.0"
 
 [[package]]

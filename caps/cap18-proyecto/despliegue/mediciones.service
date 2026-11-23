@@ -1,0 +1,20 @@
+# Unidad de systemd del servicio de mediciones (capítulo 18).
+# Se instala en /etc/systemd/system/mediciones.service.
+[Unit]
+Description=Servicio de mediciones (libro de Rust, cap. 18)
+After=network.target
+
+[Service]
+Type=exec
+ExecStart=/usr/local/bin/mediciones 127.0.0.1:8080
+Restart=on-failure
+RestartSec=2s
+# Usuario sin privilegios, creado al arrancar y liberado al parar.
+# Implica ProtectSystem=strict y ProtectHome=read-only.
+DynamicUser=yes
+NoNewPrivileges=yes
+ProtectHome=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

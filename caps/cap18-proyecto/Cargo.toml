@@ -1,0 +1,13 @@
+[package]
+name = "cap18-proyecto"
+description = "Capítulo 18: proyecto integrador, un servicio web"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+publish = false
+
+# Biblioteca (src/lib.rs) y binario `mediciones` (src/main.rs).
+[[bin]]
+name = "mediciones"
+path = "src/main.rs"

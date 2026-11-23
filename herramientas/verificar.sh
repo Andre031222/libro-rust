@@ -27,9 +27,11 @@ for tex in "$@"; do
         terminal)   n="$ANCHO_SALIDA" ;;
         compilador) n="$ANCHO_ERROR" ;;
       esac
-      awk -v n="$n" -v r="$ruta" \
-        'length($0) > n { printf "✗ %s:%d: %d caracteres (máx. %d)\n", r, NR, length($0), n }' \
-        "$RAIZ/$ruta"
+      # Cuenta caracteres, no bytes (las tildes ocupan 2 bytes en UTF-8).
+      python3 -c 'import sys
+n=int(sys.argv[1]); r=sys.argv[2]
+for i,l in enumerate(open(sys.argv[3],encoding="utf-8").read().split("\n"),1):
+    if len(l)>n: print(f"✗ {r}:{i}: {len(l)} caracteres (máx. {n})")' "$n" "$ruta" "$RAIZ/$ruta"
     done
 done > "$RAIZ/.verificar.tmp"
 if [ -s "$RAIZ/.verificar.tmp" ]; then

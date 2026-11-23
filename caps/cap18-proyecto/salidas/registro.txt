@@ -1,0 +1,4 @@
+mediciones: 127.0.0.1:8080, 10 hilos
+POST /mediciones -> 201
+GET /mediciones -> 200
+POST /mediciones -> 400

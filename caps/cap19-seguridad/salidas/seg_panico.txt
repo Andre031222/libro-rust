@@ -1,0 +1,10 @@
+-- versión corregida --
+atendido: hi
+rechazado: Truncado
+atendido: fin
+-- versión frágil --
+atendido: hi
+
+thread 'main' (7682470) panicked at caps/cap19-seguridad/src/mensajes.rs:9:12:
+range end index 258 out of range for slice of length 8
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace

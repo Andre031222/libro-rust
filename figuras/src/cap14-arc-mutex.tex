@@ -24,16 +24,16 @@
   % Bloque del montículo
   \node[celda,minimum width=14mm] (f) at (0.4,-3.3) {3};
   \node[celda,minimum width=14mm,anchor=west] (d) at (f.east) {0};
-  \node[celda,minimum width=20mm,anchor=west,fill=azul!10] (c) at ($(d.east)+(0.5,0)$) {tomado};
-  \node[celda,minimum width=16mm,anchor=west,fill=azul!10] (e) at (c.east) {no};
-  \node[celda,minimum width=16mm,anchor=west,fill=oxido!10] (v) at (e.east) {42};
+  \node[celda,minimum width=20mm,anchor=west,fill=azul!10] (c) at ($(d.east)+(0.6,0)$) {tomado};
+  \node[celda,minimum width=18mm,anchor=west,fill=azul!10] (e) at ($(c.east)+(0.35,0)$) {no};
+  \node[celda,minimum width=18mm,anchor=west,fill=oxido!10] (v) at ($(e.east)+(0.35,0)$) {42};
   \node[rotulo,below=2pt of f] (lf) {fuertes};
   \node[rotulo,below=2pt of d] {débiles};
-  \node[rotulo,below=2pt of c] {cerrojo};
-  \node[rotulo,below=2pt of e] {envenenado};
-  \node[rotulo,below=2pt of v] {dato: \texttt{u64}};
-  \node[draw=azul,thick,dashed,inner sep=4pt,fit=(c)(v)] (mx) {};
-  \node[font=\sffamily\footnotesize,text=azul,anchor=north] (lm) at ($(mx.south)+(0,-0.45)$) {\texttt{Mutex<u64>}: cerrojo, bandera y dato};
+  \node[rotulo,below=3pt of c] (lcer) {cerrojo};
+  \node[rotulo,below=3pt of e] (lenv) {envenenado};
+  \node[rotulo,below=3pt of v] (ldat) {dato: \texttt{u64}};
+  \node[draw=azul,thick,dashed,inner xsep=5pt,inner ysep=5pt,fit=(c)(v)(lcer)(lenv)(ldat)] (mx) {};
+  \node[font=\sffamily\footnotesize,text=azul,anchor=north] (lm) at ($(mx.south)+(0,-0.3)$) {\texttt{Mutex<u64>}: cerrojo, bandera y dato};
   \node[font=\sffamily\footnotesize,text=carbon,anchor=north] (lc) at ($(f.south)!0.5!(d.south)+(0,-0.6)$) {contadores atómicos};
   \node[draw=carbon!50,thick,inner sep=8pt,fit=(f)(v)(mx)(lm)(lc)] (bloque) {};
   \node[font=\sffamily\bfseries,anchor=north west] at ($(bloque.south west)+(0,-0.15)$) {Montículo: una sola reserva};

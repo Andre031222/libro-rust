@@ -1,0 +1,13 @@
+[package]
+name = "cap20-futuro"
+description = "Capítulo 20: el futuro de Rust (un módulo para WebAssembly)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+publish = false
+
+[lib]
+# cdylib: biblioteca para cargar desde otro lenguaje (.wasm, .so,
+# .dylib); rlib: para que los ejemplos y las pruebas la usen.
+crate-type = ["cdylib", "rlib"]

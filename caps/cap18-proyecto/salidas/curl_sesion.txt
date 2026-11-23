@@ -1,0 +1,12 @@
+$ curl -i -d "estacion=juli&valor=3.25" 127.0.0.1:8080/mediciones
+HTTP/1.1 201 Created
+Content-Type: application/json
+Content-Length: 39
+Connection: close
+Location: /mediciones/1
+
+{"id":1,"estacion":"juli","valor":3.25}
+$ curl 127.0.0.1:8080/mediciones
+[{"id":1,"estacion":"juli","valor":3.25}]
+$ curl -d "estacion=Juli&valor=x" 127.0.0.1:8080/mediciones
+{"error":"estacion solo admite a-z, 0-9, - y _"}
