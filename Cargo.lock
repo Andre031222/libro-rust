@@ -9,3 +9,7 @@ version = "0.1.0"
 [[package]]
 name = "ej06-propiedad"
 version = "0.1.0"
+
+[[package]]
+name = "portada-gen"
+version = "0.1.0"

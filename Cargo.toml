@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["caps/*", "ejercicios/*"]
+members = ["caps/*", "ejercicios/*", "herramientas/portada-gen"]
 
 [workspace.package]
 version = "0.1.0"
