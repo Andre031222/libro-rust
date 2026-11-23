@@ -1,0 +1,20 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{positioning,arrows.meta,calc,decorations.pathreplacing}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[>={Stealth[length=2.4mm]},
+  marco/.style={draw=carbon,rounded corners=2pt,minimum width=38mm,align=left,anchor=north west,inner sep=6pt,font=\ttfamily\small},
+  nota/.style={font=\sffamily\footnotesize,text=carbon!75}]
+  \node[marco,fill=fondocodigo] (main) at (0,0) {main\\[2pt]\textcolor{carbon!45}{texto (movida)}\\numero = 42};
+  \node[marco,fill=cobre!12] (tomar) at (7.8,0) {tomar\\[2pt]s = "propiedad"};
+  \draw[->,very thick,oxido] ([yshift=-4mm]main.north east) -- node[above,font=\sffamily\scriptsize\bfseries,text=oxido]{la propiedad se mueve} ([yshift=-4mm]tomar.north west);
+  \node[nota,below=3mm of tomar.south,align=center] (fin) {al terminar \texttt{tomar},\\\texttt{s} sale de ámbito:};
+  \node[circle,fill=oxido,text=white,font=\sffamily\bfseries\scriptsize,inner sep=1.5pt,below=1mm of fin] {drop};
+  \node[nota,below=3mm of main.south,align=center] {\texttt{numero} es \texttt{Copy}:\\sigue disponible en \texttt{main}};
+  \node[font=\sffamily\bfseries\small,anchor=south west] at (main.north west) {Pila de llamadas};
+\end{tikzpicture}
+\end{document}

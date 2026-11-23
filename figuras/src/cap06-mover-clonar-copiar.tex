@@ -1,0 +1,56 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{positioning,arrows.meta,calc,decorations.pathreplacing}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[>={Stealth[length=2.2mm]},
+  c/.style={draw=carbon,minimum width=9mm,minimum height=6mm,font=\ttfamily\scriptsize,inner sep=0},
+  h/.style={draw=carbon,minimum width=5.5mm,minimum height=6mm,font=\ttfamily\scriptsize,inner sep=0,fill=white},
+  tit/.style={font=\sffamily\bfseries\small,anchor=west},
+  sub/.style={font=\ttfamily\scriptsize,anchor=west,text=carbon!80},
+  et/.style={font=\ttfamily\scriptsize\bfseries,anchor=east}]
+  % ---- Mover ----
+  \begin{scope}
+    \node[tit] at (-0.9,1.3) {Mover};
+    \node[sub] at (-0.9,0.85) {let b = a;};
+    \node[et,text=carbon!50] at (-0.35,0) {a};
+    \node[c,fill=carbon!12,text=carbon!50] (a) at (0.25,0) {ptr};
+    \draw[oxido,line width=1.4pt] (-0.2,-0.3)--(0.7,0.3);
+    \node[et] at (-0.35,-0.9) {b};
+    \node[c,fill=fondocodigo,very thick] (b) at (0.25,-0.9) {ptr};
+    \foreach \l [count=\i from 0] in {h,o,l,a} \node[h] (m\i) at (1.6+\i*0.55,-2.3) {\l};
+    \draw[->,thick] (b.south) |- (m0.west);
+    \node[font=\sffamily\scriptsize,text=carbon!75,align=center] at (2.4,-3.1) {1 bloque, 1 dueño};
+  \end{scope}
+  % ---- Clonar ----
+  \begin{scope}[xshift=4.6cm]
+    \node[tit] at (-0.9,1.3) {Clonar};
+    \node[sub] at (-0.9,0.85) {let b = a.clone();};
+    \node[et] at (-0.35,0) {a};
+    \node[c,fill=fondocodigo,very thick] (a) at (0.25,0) {ptr};
+    \node[et] at (-0.35,-0.9) {b};
+    \node[c,fill=fondocodigo,very thick] (b) at (0.25,-0.9) {ptr};
+    \foreach \l [count=\i from 0] in {h,o,l,a} \node[h] (p\i) at (1.6+\i*0.55,-0.6) {\l};
+    \foreach \l [count=\i from 0] in {h,o,l,a} \node[h,fill=cobre!25] (q\i) at (1.6+\i*0.55,-2.3) {\l};
+    \draw[->,thick] (a.east) -- ++(0.35,0) |- (p0.west);
+    \draw[->,thick] (b.south) |- (q0.west);
+    \node[font=\sffamily\scriptsize,text=carbon!75] at (2.4,-3.1) {2 bloques, 2 dueños};
+  \end{scope}
+  % ---- Copiar ----
+  \begin{scope}[xshift=9.2cm]
+    \node[tit] at (-0.9,1.3) {Copiar};
+    \node[sub] at (-0.9,0.85) {let y = x;  // i32};
+    \node[et] at (-0.35,0) {x};
+    \node[c,fill=fondocodigo,very thick] at (0.25,0) {5};
+    \node[et] at (-0.35,-0.9) {y};
+    \node[c,fill=fondocodigo,very thick] at (0.25,-0.9) {5};
+    \node[font=\sffamily\scriptsize,text=carbon!75,align=left,anchor=west] at (0.95,-0.45) {sin montículo:\\ambas válidas};
+    \node[font=\sffamily\scriptsize,text=carbon!75] at (1.3,-3.1) {solo la pila};
+  \end{scope}
+  % Separadores
+  \draw[carbon!20] (3.5,1.5)--(3.5,-3.3) (8.1,1.5)--(8.1,-3.3);
+\end{tikzpicture}
+\end{document}

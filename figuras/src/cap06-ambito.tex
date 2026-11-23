@@ -1,0 +1,36 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{positioning,arrows.meta,calc,decorations.pathreplacing}
+\begin{document}
+\sffamily\small
+\begin{tikzpicture}[>={Stealth[length=2.4mm]},
+  cod/.style={anchor=west,font=\ttfamily\small,inner sep=1pt},
+  nota/.style={font=\sffamily\footnotesize,text=carbon!75}]
+  % Código, una línea por fila
+  \fill[fondocodigo] (-0.2,0.45) rectangle (6.2,-4.45);
+  \foreach \t [count=\i from 0] in {fn main() \{,
+      \ \ \ \ let s1 = String::from("hola");,
+      \ \ \ \ let s2 = s1;,
+      \ \ \ \ println!("\{s2\}");,
+      \}} {\node[cod] at (0,-\i) {\t};}
+  % Barras de vida
+  \node[font=\ttfamily\bfseries] at (7.0,0.75) {s1};
+  \node[font=\ttfamily\bfseries] at (8.2,0.75) {s2};
+  \fill[oxido] (6.85,-1) rectangle (7.15,-2);
+  \draw[oxido!60,dashed,line width=1.2pt] (7.0,-2) -- (7.0,-4);
+  \node[nota,anchor=west,align=left] at (8.6,-2.9) {s1 quedó movida:\\ya no es válida};
+  \fill[carbon] (8.05,-2) rectangle (8.35,-4);
+  % Movimiento
+  \draw[->,very thick,carbon!70] (7.15,-2) -- (8.05,-2);
+  % Drop
+  \node[circle,fill=oxido,text=white,font=\sffamily\bfseries\scriptsize,inner sep=1.5pt] (d) at (8.2,-4.35) {drop};
+  \node[nota,anchor=west,align=left] at (8.65,-4.35) {al cerrar la llave se\\libera el bloque una sola vez};
+  % Leyenda
+  \node[nota,anchor=west] at (-0.2,-5.1) {\textcolor{oxido}{\rule{8pt}{8pt}}\, s1 es dueña\quad
+    \textcolor{carbon}{\rule{8pt}{8pt}}\, s2 es dueña\quad
+    \textcolor{oxido!60}{- - -}\, variable inválida};
+\end{tikzpicture}
+\end{document}
