@@ -1,0 +1,36 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{paleta.tex}
+\usepackage{fontspec}
+\setsansfont{FiraSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-SemiBold,ItalicFont=*-Italic,BoldItalicFont=*-SemiBoldItalic]
+\setmonofont{FiraMono}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Medium,Scale=0.95]
+\usetikzlibrary{arrows.meta,calc,positioning,shapes.geometric}
+\begin{document}
+\sffamily\small
+% Retos del informe Vision Doc (marzo de 2026) y trabajo asignado en 2026.
+\begin{tikzpicture}[
+  reto/.style={draw=#1,line width=0.9pt,fill=white,rounded corners=3pt,
+    minimum height=16mm,text width=50mm,align=left,inner sep=6pt,
+    execute at begin node={\hyphenpenalty=10000\raggedright}},
+  plan/.style={fill=oxido,text=white,rounded corners=2pt,inner sep=2.5pt,
+    font=\sffamily\scriptsize\bfseries},
+  nota/.style={font=\sffamily\footnotesize,text=carbon!75}]
+  \node[reto=oxido] (r1) at (0,0) {{\bfseries\color{oxido}Tiempos de compilación}\\[2pt]
+    {\footnotesize Objetivos: compilador paralelo y nuevo resolvedor de rasgos.}};
+  \node[reto=oxido] (r2) at (6.2,0) {{\bfseries\color{oxido}Programación asíncrona}\\[2pt]
+    {\footnotesize Hoja de ruta «Just add async».}};
+  \node[reto=carbon!55] (r3) at (0,-2.2) {{\bfseries\color{carbon}Propiedad y préstamos}\\[2pt]
+    {\footnotesize La curva de entrada para quien empieza.}};
+  \node[reto=carbon!55] (r4) at (6.2,-2.2) {{\bfseries\color{carbon}Elección de \emph{crates}}\\[2pt]
+    {\footnotesize Saber qué biblioteca usar y en cuál confiar.}};
+  \node[plan] at (r1.north east) [anchor=center,xshift=-9mm] {objetivo 2026};
+  \node[plan] at (r2.north east) [anchor=center,xshift=-9mm] {objetivo 2026};
+  % Dominios inmaduros, en una franja inferior.
+  \node[draw=azul,dashed,line width=0.9pt,rounded corners=3pt,fill=azul!6,
+    text width=112mm,align=center,inner sep=6pt,
+    execute at begin node={\hyphenpenalty=10000}] (dom) at (3.1,-4.25)
+    {{\bfseries\color{azul}Dominios inmaduros}\\[2pt]
+     {\footnotesize embebidos con pocos recursos, seguridad crítica e interfaces gráficas (capítulo~III)}\\[2pt]{\footnotesize\color{carbon!75}La seguridad crítica tiene hoja de ruta propia; las interfaces gráficas, ningún plan visible.}};
+  \node[nota,anchor=south west] at ($(r1.north west)+(0,3mm)$)
+    {Cuatro retos comunes, según el informe del \emph{Vision Doc} (marzo de 2026)};
+\end{tikzpicture}
+\end{document}
